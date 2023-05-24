@@ -2,7 +2,13 @@ package com.revature.p0.screens;
 
 import java.util.Scanner;
 
+import com.revature.p0.services.UserService;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class RegisterScreen implements iScreen {
+    private final UserService userService;
 
     @Override
     public void start(Scanner scanner) {
@@ -16,10 +22,13 @@ public class RegisterScreen implements iScreen {
             while (true) {
                 clearScreen();
                 System.out.println("Welcome to the register screen");
-                scanner.nextLine();
 
                 // get username
                 username = getUsername(scanner);
+
+                if (username.equals("x")) {
+                    break exit;
+                }
 
                 // get password
 
@@ -28,7 +37,7 @@ public class RegisterScreen implements iScreen {
                 // confirm user info
 
                 // break when info is correct
-                break exit;
+                break exit; // will be removed
             }
         }
     }
@@ -39,11 +48,25 @@ public class RegisterScreen implements iScreen {
 
     // get the username of user
     public String getUsername(Scanner scanner) {
-        System.out.print("\nEnter your username:");
-        String username = scanner.nextLine();
-        System.out.println("Username: " + username);
+        while (true) {
+            System.out.print("\nEnter your username (x to cancel):");
+            String username = scanner.nextLine();
 
-        clearScreen();
+            if (username.equalsIgnoreCase("x")) {
+                return "x";
+            }
+
+            if (!userService.isValidUsername(username)) {
+                clearScreen();
+                System.out.println("Username needs to be 8 to 20 characters long.");
+                System.out.print("\nPress enter to continue...");
+                scanner.nextLine();
+                continue;
+            }
+
+            break;
+        }
+
         return " ";
     }
 

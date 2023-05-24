@@ -15,12 +15,18 @@ public class RouterService {
             case "/login":
                 break;
             case "/register":
-                new RegisterScreen().start(scan);
+                new RegisterScreen(getUserService()).start(scan);
                 break;
             case "/review":
                 break;
             default:
                 break;
         }
+    }
+
+    /* ------------------- Helper Method --------------- */
+
+    private UserService getUserService() {
+        return new UserService();
     }
 }
