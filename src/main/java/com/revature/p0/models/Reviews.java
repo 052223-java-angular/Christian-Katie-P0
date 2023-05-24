@@ -11,9 +11,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class User {
+public class Reviews {
     private String id;
-    private String username;
-    private String password;
-    private String email;
+    private int rating;
+    private String comments;
+    private String user_id;
+    private String product_id;
 }
