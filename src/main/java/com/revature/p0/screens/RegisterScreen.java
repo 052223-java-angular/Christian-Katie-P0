@@ -2,12 +2,14 @@ package com.revature.p0.screens;
 
 import java.util.Scanner;
 
+import com.revature.p0.models.Session;
+import com.revature.p0.models.User;
 import com.revature.p0.services.UserService;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class RegisterScreen implements iScreen {
+public class RegisterScreen implements IScreen {
     private final UserService userService;
 
     @Override
@@ -51,6 +53,10 @@ public class RegisterScreen implements iScreen {
 
                 switch (scanner.nextLine()) {
                     case "y":
+                        User createdUser = userService.register(username, password);
+                        Session session = new Session();
+                        session.setSession(createdUser);
+                        router.navigate("/menu", scanner);
                         break exit;
                     case "n":
                         clearScreen();
@@ -164,13 +170,13 @@ public class RegisterScreen implements iScreen {
                 return "x";
             }
 
-            if (!userService.isSameEmail(email)) {
-                clearScreen();
-                System.out.println("There is already an account with this email.");
-                System.out.print("\nPress enter to continue...");
-                scanner.nextLine();
-                continue;
-            }
+            // if (!userService.isSameEmail(email)) {
+            // clearScreen();
+            // System.out.println("There is already an account with this email.");
+            // System.out.print("\nPress enter to continue...");
+            // scanner.nextLine();
+            // continue;
+            // }
 
             break;
         }
