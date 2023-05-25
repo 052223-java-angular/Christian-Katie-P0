@@ -2,27 +2,29 @@ package com.revature.p0.services;
 
 import java.util.Optional;
 
-import javax.swing.text.html.Option;
+import javax.management.relation.RoleNotFoundException;
 
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.revature.p0.daos.UserDAO;
+import com.revature.p0.models.Roles;
 import com.revature.p0.models.User;
-
-import lombok.AllArgsConstructor;
 
 public class UserService {
     private final UserDAO userDAO;
+    private final RoleService roleService;
 
-    public UserService(UserDAO userDAO) {
+    public UserService(UserDAO userDAO, RoleService roleService) {
         this.userDAO = userDAO;
+        this.roleService = roleService;
     }
 
-    public User register(String username, String password) {
+    public User register(String username, String password) throws RoleNotFoundException {
+        Roles foundRole = roleService.findByName("USER");
         String hashed = BCrypt.hashpw(username, BCrypt.gensalt());
-        User newUser = new User();
-
-        return null;
+        User newUser = new User(username, hashed, foundRole);
+        userDAO.save(newUser);
+        return newUser;
     }
 
     public boolean isValidUsername(String username) {
