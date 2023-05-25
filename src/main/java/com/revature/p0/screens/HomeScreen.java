@@ -11,7 +11,7 @@ public class HomeScreen implements iScreen {
     private final RouterService router;
 
     @Override
-    public void start(Scanner scan) {
+    public void start(Scanner scanner) {
         String input = " ";
 
         exit: {
@@ -23,13 +23,13 @@ public class HomeScreen implements iScreen {
                 System.out.println("[x] Exit");
 
                 System.out.println("\nEnter: ");
-                input = scan.nextLine();
+                input = scanner.nextLine();
 
                 switch (input.toLowerCase()) {
                     case "1":
                         break;
                     case "2":
-                        router.navigate("/register", scan);
+                        router.navigate("/register", scanner);
                         break;
                     case "x":
                         System.out.println("Goodbye!");
@@ -38,7 +38,7 @@ public class HomeScreen implements iScreen {
                         clearScreen();
                         System.out.println("Invalid option selected.");
                         System.out.print("\nPress enter to continue...");
-                        scan.nextLine();
+                        scanner.nextLine();
                         break;
                 }
 

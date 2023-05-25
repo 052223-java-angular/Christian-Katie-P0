@@ -2,6 +2,7 @@ package com.revature.p0.services;
 
 import java.util.Scanner;
 
+import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.HomeScreen;
 import com.revature.p0.screens.RegisterScreen;
 
@@ -27,6 +28,6 @@ public class RouterService {
     /* ------------------- Helper Method --------------- */
 
     private UserService getUserService() {
-        return new UserService();
+        return new UserService(new UserDAO());
     }
 }
