@@ -48,9 +48,11 @@ public class RegisterScreen implements iScreen {
 
     // get the username of user
     public String getUsername(Scanner scanner) {
+        String username = "";
+
         while (true) {
             System.out.print("\nEnter your username (x to cancel):");
-            String username = scanner.nextLine();
+            username = scanner.nextLine();
 
             if (username.equalsIgnoreCase("x")) {
                 return "x";
@@ -64,10 +66,18 @@ public class RegisterScreen implements iScreen {
                 continue;
             }
 
+            if (!userService.isUniqueUsername(username)) {
+                clearScreen();
+                System.out.println("Username is not unique.");
+                System.out.print("\nPress enter to continue...");
+                scanner.nextLine();
+                continue;
+            }
+
             break;
         }
 
-        return " ";
+        return username;
     }
 
     // get the password of user

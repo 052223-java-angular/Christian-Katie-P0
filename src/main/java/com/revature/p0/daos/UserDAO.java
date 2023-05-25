@@ -20,8 +20,4 @@ public interface UserDAO<T> {
 
     // get all users
     List<T> getAllUsers();
-
-    // find a user by their username
-    void getUserByUsername(String username);
-
 }
