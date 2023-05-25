@@ -25,6 +25,7 @@ public class ShoppingCartDAO {
                         sc.setId(rs.getString("id"));
                         sc.setUser_id(rs.getString("user_id"));
                         return sc; // Might need to return Optional.of(sc)
+                        // Comment
                     }
                 }
             }
