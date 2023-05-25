@@ -2,6 +2,8 @@ package com.revature.p0.screens;
 
 import java.util.Scanner;
 
+import com.revature.p0.models.Session;
+import com.revature.p0.models.User;
 import com.revature.p0.services.UserService;
 
 import lombok.AllArgsConstructor;
@@ -51,6 +53,10 @@ public class RegisterScreen implements IScreen {
 
                 switch (scanner.nextLine()) {
                     case "y":
+                        User createdUser = userService.register(username, password);
+                        Session session = new Session();
+                        session.setSession(createdUser);
+                        router.navigate("/menu", scanner);
                         break exit;
                     case "n":
                         clearScreen();

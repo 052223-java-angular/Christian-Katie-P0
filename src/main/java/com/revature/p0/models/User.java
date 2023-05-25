@@ -17,12 +17,14 @@ public class User {
     private String id;
     private String username;
     private String password;
+    private String roles;
     private String email;
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, Roles foundRole) {
         this.id = UUID.randomUUID().toString();
         this.username = username;
         this.password = password;
+        this.roles = roles;
         this.email = email;
     }
 }

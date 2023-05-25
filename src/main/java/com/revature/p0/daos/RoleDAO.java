@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import javax.management.relation.Role;
 
+import com.revature.p0.models.Roles;
 import com.revature.p0.utils.ConnectionFactory;
 
 public class RoleDAO implements CrudDAO<Role> {
@@ -44,4 +45,31 @@ public class RoleDAO implements CrudDAO<Role> {
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
+    public Optional<Roles> findByName(String name) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "SELECT * FROM roles WHERE name = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, name);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        Roles roles = new Roles();
+                        roles.setId(resultSet.getString("id"));
+                        roles.setName(resultSet.getString("name"));
+                        return Optional.of(roles);
+                    }
+                }
+            }
+
+        } catch (SQLException sql) {
+            throw new RuntimeException("Unable to access database.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc.");
+        }
+
+        return Optional.empty();
+    }
 }
