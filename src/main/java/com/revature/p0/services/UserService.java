@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.swing.text.html.Option;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.models.User;
 
@@ -17,6 +19,8 @@ public class UserService {
     }
 
     public User register(String username, String password) {
+        String hashed = BCrypt.hashpw(username, BCrypt.gensalt());
+        User newUser = new User();
 
         return null;
     }
