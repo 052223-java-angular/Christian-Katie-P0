@@ -7,7 +7,7 @@ import com.revature.p0.services.RouterService;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class HomeScreen implements iScreen {
+public class HomeScreen implements IScreen {
     private final RouterService router;
 
     @Override

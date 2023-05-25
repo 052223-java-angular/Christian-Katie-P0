@@ -7,7 +7,7 @@ import com.revature.p0.services.UserService;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class RegisterScreen implements iScreen {
+public class RegisterScreen implements IScreen {
     private final UserService userService;
 
     @Override
