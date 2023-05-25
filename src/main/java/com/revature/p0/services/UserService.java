@@ -30,7 +30,8 @@ public class UserService {
     }
 
     public boolean isUniqueUsername(String username) {
-        Optional<User> userOpt = userDAO.findUserById(username);
+        UserDAO userDAO = new UserDAO();
+        Optional<User> userOpt = userDAO.findByUsername(username);
 
         if (userOpt.isEmpty()) {
             return true;
@@ -46,12 +47,12 @@ public class UserService {
         return password.equals(confirmPassword);
     }
 
-    public boolean isSameEmail(String email) {
-        User user = userDAO.findUserById(email);
+    // public boolean isSameEmail(String email) {
+    // User user = userDAO.findByID(email);
 
-        if (user.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
+    // if (user.isEmpty()) {
+    // return true;
+    // }
+    // return false;
+    // }
 }

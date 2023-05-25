@@ -164,13 +164,13 @@ public class RegisterScreen implements IScreen {
                 return "x";
             }
 
-            if (!userService.isSameEmail(email)) {
-                clearScreen();
-                System.out.println("There is already an account with this email.");
-                System.out.print("\nPress enter to continue...");
-                scanner.nextLine();
-                continue;
-            }
+            // if (!userService.isSameEmail(email)) {
+            // clearScreen();
+            // System.out.println("There is already an account with this email.");
+            // System.out.print("\nPress enter to continue...");
+            // scanner.nextLine();
+            // continue;
+            // }
 
             break;
         }
