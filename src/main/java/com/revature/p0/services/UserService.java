@@ -16,6 +16,11 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
+    public User register(String username, String password) {
+
+        return null;
+    }
+
     public boolean isValidUsername(String username) {
         return username.matches("^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$");
     }
@@ -35,5 +40,14 @@ public class UserService {
 
     public boolean isSamePassword(String password, String confirmPassword) {
         return password.equals(confirmPassword);
+    }
+
+    public boolean isSameEmail(String email) {
+        User user = userDAO.findUserById(email);
+
+        if (user.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 }

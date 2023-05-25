@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import javax.naming.spi.DirStateFactory.Result;
-
 import com.revature.p0.models.User;
 import com.revature.p0.utils.ConnectionFactory;
 
@@ -17,8 +15,26 @@ public class UserDAOImpl implements UserDAO<User> {
 
     @Override
     public void saveUser(User object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveUser'");
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "INSERT INTO users (id, username, password, email) VALUES (?, ?, ?, ?)";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, object.getId());
+                preparedStatement.setString(2, object.getUsername());
+                preparedStatement.setString(3, object.getPassword());
+                preparedStatement.setString(4, object.getEmail());
+
+                preparedStatement.executeUpdate();
+            }
+
+        } catch (SQLException sql) {
+            throw new RuntimeException("Unable to access database.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc.");
+        }
+
     }
 
     @Override

@@ -25,7 +25,6 @@ public class RegisterScreen implements iScreen {
 
                 // get username
                 username = getUsername(scanner);
-
                 if (username.equals("x")) {
                     break exit;
                 }
@@ -37,8 +36,35 @@ public class RegisterScreen implements iScreen {
                 }
 
                 // get email
+                email = getEmail(scanner);
+                if (email.equals("x")) {
+                    break exit;
+                }
 
                 // confirm user info
+                clearScreen();
+                System.out.println("Please confirm your information:");
+                System.out.println("\nUsername: " + username);
+                System.out.println("Password: " + password);
+                System.out.println("Emails: " + email);
+                System.out.println("\nEnter (y/n): ");
+
+                switch (scanner.nextLine()) {
+                    case "y":
+                        break exit;
+                    case "n":
+                        clearScreen();
+                        System.out.println("Restarting process.");
+                        System.out.print("\nPress enter to continue...");
+                        scanner.nextLine();
+                        break;
+                    default:
+                        clearScreen();
+                        System.out.println("Invalid option selected.");
+                        System.out.print("\nPress enter to continue...");
+                        scanner.nextLine();
+                        break;
+                }
 
                 // break when info is correct
                 break exit; // will be removed
@@ -128,10 +154,30 @@ public class RegisterScreen implements iScreen {
 
     // get the email of user
     public String getEmail(Scanner scanner) {
-        return " ";
+        String email = "";
+
+        while (true) {
+            System.out.print("\nEnter your email (x to cancel):");
+            email = scanner.nextLine();
+
+            if (email.equalsIgnoreCase("x")) {
+                return "x";
+            }
+
+            if (!userService.isSameEmail(email)) {
+                clearScreen();
+                System.out.println("There is already an account with this email.");
+                System.out.print("\nPress enter to continue...");
+                scanner.nextLine();
+                continue;
+            }
+
+            break;
+        }
+        return email;
     }
 
-    // method to clear the terminal-purely *asthetic*
+    // method to clear the terminal
     private void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
