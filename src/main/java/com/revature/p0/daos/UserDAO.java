@@ -4,10 +4,10 @@ import java.util.List;
 
 import com.revature.p0.models.User;
 
-public interface UserDAO<T> {
+public interface UserDAO<User> {
 
     // create user
-    void saveUser(T object);
+    void saveUser(User object);
 
     // update a user
     void updateUserById(String id);
@@ -16,8 +16,8 @@ public interface UserDAO<T> {
     void deleteUserById(String id);
 
     // find a user by the user_id
-    T findUserById(String id);
+    User findUserById(String id);
 
     // get all users
-    List<T> getAllUsers();
+    List<User> getAllUsers();
 }

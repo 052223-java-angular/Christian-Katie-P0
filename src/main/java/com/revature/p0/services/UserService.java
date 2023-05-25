@@ -9,9 +9,12 @@ import com.revature.p0.models.User;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public class UserService {
     private final UserDAO userDAO;
+
+    public UserService(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     public boolean isValidUsername(String username) {
         return username.matches("^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$");
@@ -24,5 +27,13 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    public boolean isValidPassword(String password) {
+        return password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$");
+    }
+
+    public boolean isSamePassword(String password, String confirmPassword) {
+        return password.equals(confirmPassword);
     }
 }

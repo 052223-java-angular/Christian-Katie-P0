@@ -31,6 +31,10 @@ public class RegisterScreen implements iScreen {
                 }
 
                 // get password
+                password = getPassword(scanner);
+                if (password.equals("x")) {
+                    break exit;
+                }
 
                 // get email
 
@@ -82,7 +86,44 @@ public class RegisterScreen implements iScreen {
 
     // get the password of user
     public String getPassword(Scanner scanner) {
-        return " ";
+        String password = "";
+        String confirm = "";
+
+        while (true) {
+            System.out.println("\nEnter a password (x to cancel): ");
+            password = scanner.nextLine();
+
+            if (password.equalsIgnoreCase("x")) {
+                return "x";
+            }
+
+            if (!userService.isValidPassword(password)) {
+                clearScreen();
+                System.out.println("Password needs to be minumum of eight chartacter, at least 1 letter and 1 number.");
+                System.out.print("\nPress enter to continue...");
+                scanner.nextLine();
+                continue;
+            }
+
+            System.out.println("\nPlease confirm password(x to cancel): ");
+            confirm = scanner.nextLine();
+
+            if (confirm.equalsIgnoreCase("x")) {
+                return "x";
+            }
+
+            if (!userService.isSamePassword(password, confirm)) {
+                clearScreen();
+                System.out.println("Passwords do not match.");
+                System.out.print("\nPress enter to continue...");
+                scanner.nextLine();
+                continue;
+            }
+
+            break;
+        }
+
+        return password;
     }
 
     // get the email of user
