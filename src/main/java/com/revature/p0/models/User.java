@@ -19,7 +19,7 @@ public class User {
     private String password;
     private String roleId;
 
-    public User(String username, String password, Role foundRole) {
+    public User(String username, String password, String roleId) {
         this.id = UUID.randomUUID().toString();
         this.username = username;
         this.password = password;

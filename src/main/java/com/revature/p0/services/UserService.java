@@ -22,7 +22,7 @@ public class UserService {
     public User register(String username, String password) throws RoleNotFoundException {
         Role foundRole = roleService.findByName("USER");
         String hashed = BCrypt.hashpw(username, BCrypt.gensalt());
-        User newUser = new User(username, hashed, foundRole);
+        User newUser = new User(username, hashed, foundRole.getId());
         userDAO.save(newUser);
         return newUser;
     }
