@@ -10,7 +10,7 @@ import com.revature.p0.services.RouterService;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class HomeScreen implements IScreen {
+public class HomeScreen implements iScreen {
     private final RouterService router;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 

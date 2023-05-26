@@ -14,7 +14,7 @@ import com.revature.p0.utils.Session;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class RegisterScreen implements IScreen {
+public class RegisterScreen implements iScreen {
     private final UserService userService;
     private final RouterService routerService;
     private Session session;

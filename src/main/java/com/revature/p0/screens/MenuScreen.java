@@ -7,7 +7,7 @@ import com.revature.p0.utils.Session;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class MenuScreen implements IScreen {
+public class MenuScreen implements iScreen {
     private Session session;
 
     @Override
