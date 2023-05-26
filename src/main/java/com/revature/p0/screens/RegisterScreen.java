@@ -59,19 +59,19 @@ public class RegisterScreen implements Screen {
                 switch (scanner.nextLine()) {
                     case "y":
                         logger.info("User confirmed credentials are correct.");
-                        try {
-                            User createdUser = userService.register(username, password);
-                            session.setSession(createdUser);
-                            routerService.navigate("/menu", scanner);
-                            break exit;
-                        } catch (RoleNotFoundException e) {
-                            clearScreen();
-                            System.out.println("An error has occured. Please try again. " +
-                                    e.getMessage());
-                            System.out.println("\nPress enter to continue...");
-                            e.printStackTrace();
-                            scanner.nextLine();
-                        }
+                        // try {
+                        User createdUser = userService.register(username, password);
+                        session.setSession(createdUser);
+                        routerService.navigate("/menu", scanner);
+                        break exit;
+                    // } catch (RoleNotFoundException e) {
+                    // clearScreen();
+                    // System.out.println("An error has occured. Please try again. " +
+                    // e.getMessage());
+                    // System.out.println("\nPress enter to continue...");
+                    // e.printStackTrace();
+                    // scanner.nextLine();
+                    // }
                     case "n":
                         logger.info("Restarting registration process...");
                         clearScreen();

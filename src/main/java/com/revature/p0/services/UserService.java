@@ -2,8 +2,6 @@ package com.revature.p0.services;
 
 import java.util.Optional;
 
-import javax.management.relation.RoleNotFoundException;
-
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.revature.p0.daos.UserDAO;
@@ -19,7 +17,7 @@ public class UserService {
         this.roleService = roleService;
     }
 
-    public User register(String username, String password) throws RoleNotFoundException {
+    public User register(String username, String password) {
         Role foundRole = roleService.findByName("USER");
         String hashed = BCrypt.hashpw(username, BCrypt.gensalt());
         User newUser = new User(username, hashed, foundRole.getId());
