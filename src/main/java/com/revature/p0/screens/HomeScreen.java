@@ -23,7 +23,7 @@ public class HomeScreen implements Screen {
         exit: {
             while (true) {
                 clearScreen();
-                System.out.println("Welcome to the store!");
+                System.out.println("Welcome to the Minecraft Store!");
                 System.out.println("\n[1] Login");
                 System.out.println("[2] Register");
                 System.out.println("[x] Exit");
@@ -50,7 +50,7 @@ public class HomeScreen implements Screen {
                         System.out.print("\nPress enter to continue...");
                         scanner.nextLine();
                         break;
-                }
+                }//
 
             }
         }

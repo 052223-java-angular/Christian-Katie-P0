@@ -13,8 +13,10 @@ import com.revature.p0.utils.ConnectionFactory;
 
 public class UserDAO implements CrudDAO<User> {
 
+    // creating a user account and saving in database
     @Override
     public void save(User obj) {
+        // create connection
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO users (id, username, password, role_id) VALUES (?, ?, ?, ?)";
 
@@ -27,12 +29,39 @@ public class UserDAO implements CrudDAO<User> {
             }
 
         } catch (SQLException sql) {
-            throw new RuntimeException("Unable to access database.");
+            throw new RuntimeException("Unable to access database to save user.");
         } catch (IOException io) {
-            throw new RuntimeException("Cannot find application.properties.");
+            throw new RuntimeException("Cannot find application.properties to save user.");
         } catch (ClassNotFoundException cnf) {
-            throw new RuntimeException("Unable to load jdbc.");
+            throw new RuntimeException("Unable to load jdbc to save user.");
         }
+    }
+
+    // retrieving the account from database so the user can login
+    @Override
+    public User findByID(String id) {
+        User login = null;
+        // create connection
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "SELECT * FROM users WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                login = new User(
+                        rs.getString("id"),
+                        rs.getString("username"),
+                        rs.getString("password"));
+            }
+        } catch (SQLException sql) {
+            throw new RuntimeException("Unable to access database to login user.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties to login user.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc to login user.");
+        }
+        return login;
     }
 
     public Optional<User> findByUsername(String username) {
@@ -76,12 +105,6 @@ public class UserDAO implements CrudDAO<User> {
     public void delete(String id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public User findByID(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByID'");
     }
 
     @Override
