@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.revature.p0.models.Session;
 import com.revature.p0.models.User;
+import com.revature.p0.services.RouterService;
 import com.revature.p0.services.UserService;
 
 import lombok.AllArgsConstructor;
@@ -11,6 +12,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RegisterScreen implements IScreen {
     private final UserService userService;
+    private final RouterService routerService;
+    private Session session;
 
     @Override
     public void start(Scanner scanner) {
@@ -38,10 +41,9 @@ public class RegisterScreen implements IScreen {
                 }
 
                 // get email
-                email = getEmail(scanner);
-                if (email.equals("x")) {
-                    break exit;
-                }
+                // email = getEmail(scanner);
+                // if (email.equals("x")) {
+                // break exit;
 
                 // confirm user info
                 clearScreen();
@@ -54,9 +56,8 @@ public class RegisterScreen implements IScreen {
                 switch (scanner.nextLine()) {
                     case "y":
                         User createdUser = userService.register(username, password);
-                        Session session = new Session();
                         session.setSession(createdUser);
-                        router.navigate("/menu", scanner);
+                        routerService.navigate("/menu", scanner);
                         break exit;
                     case "n":
                         clearScreen();
@@ -159,29 +160,29 @@ public class RegisterScreen implements IScreen {
     }
 
     // get the email of user
-    public String getEmail(Scanner scanner) {
-        String email = "";
+    // public String getEmail(Scanner scanner) {
+    // String email = "";
 
-        while (true) {
-            System.out.print("\nEnter your email (x to cancel):");
-            email = scanner.nextLine();
+    // while (true) {
+    // System.out.print("\nEnter your email (x to cancel):");
+    // email = scanner.nextLine();
 
-            if (email.equalsIgnoreCase("x")) {
-                return "x";
-            }
+    // if (email.equalsIgnoreCase("x")) {
+    // return "x";
+    // }
 
-            // if (!userService.isSameEmail(email)) {
-            // clearScreen();
-            // System.out.println("There is already an account with this email.");
-            // System.out.print("\nPress enter to continue...");
-            // scanner.nextLine();
-            // continue;
-            // }
+    // if (!userService.isSameEmail(email)) {
+    // clearScreen();
+    // System.out.println("There is already an account with this email.");
+    // System.out.print("\nPress enter to continue...");
+    // scanner.nextLine();
+    // continue;
+    // }
 
-            break;
-        }
-        return email;
-    }
+    // break;
+    // }
+    // return email;
+    // }
 
     // method to clear the terminal
     private void clearScreen() {
