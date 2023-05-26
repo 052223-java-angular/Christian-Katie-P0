@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.daos.UserDAO;
-import com.revature.p0.models.Session;
 import com.revature.p0.screens.HomeScreen;
 import com.revature.p0.screens.MenuScreen;
 import com.revature.p0.screens.RegisterScreen;
+import com.revature.p0.utils.Session;
 
 import lombok.AllArgsConstructor;
 

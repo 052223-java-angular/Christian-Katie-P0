@@ -1,4 +1,6 @@
-package com.revature.p0.models;
+package com.revature.p0.utils;
+
+import com.revature.p0.models.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

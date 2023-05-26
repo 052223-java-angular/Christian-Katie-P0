@@ -1,14 +1,12 @@
 package com.revature.p0.screens;
 
 import java.util.Scanner;
-
-import javax.management.relation.RoleInfoNotFoundException;
 import javax.management.relation.RoleNotFoundException;
 
-import com.revature.p0.models.Session;
 import com.revature.p0.models.User;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.services.UserService;
+import com.revature.p0.utils.Session;
 
 import lombok.AllArgsConstructor;
 
@@ -28,7 +26,7 @@ public class RegisterScreen implements IScreen {
         exit: {
             while (true) {
                 clearScreen();
-                System.out.println("Welcome to the register screen");
+                System.out.println("Welcome to the register screen!");
 
                 // get username
                 username = getUsername(scanner);
@@ -47,14 +45,12 @@ public class RegisterScreen implements IScreen {
                 System.out.println("Please confirm your information:");
                 System.out.println("\nUsername: " + username);
                 System.out.println("Password: " + password);
-
                 System.out.println("\nEnter (y/n): ");
 
                 switch (scanner.nextLine()) {
                     case "y":
                         try {
                             User createdUser = userService.register(username, password);
-                            Session session = new Session();
                             session.setSession(createdUser);
                             routerService.navigate("/menu", scanner);
                             break exit;

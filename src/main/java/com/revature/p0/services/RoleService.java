@@ -7,7 +7,6 @@ import javax.management.relation.RoleNotFoundException;
 import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.models.Role;
-import com.revature.p0.models.User;
 
 import lombok.AllArgsConstructor;
 

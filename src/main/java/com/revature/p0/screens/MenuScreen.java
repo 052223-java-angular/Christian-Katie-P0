@@ -2,7 +2,7 @@ package com.revature.p0.screens;
 
 import java.util.Scanner;
 
-import com.revature.p0.models.Session;
+import com.revature.p0.utils.Session;
 
 import lombok.AllArgsConstructor;
 
