@@ -7,7 +7,7 @@ import javax.management.relation.RoleNotFoundException;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.revature.p0.daos.UserDAO;
-import com.revature.p0.models.Roles;
+import com.revature.p0.models.Role;
 import com.revature.p0.models.User;
 
 public class UserService {
@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public User register(String username, String password) throws RoleNotFoundException {
-        Roles foundRole = roleService.findByName("USER");
+        Role foundRole = roleService.findByName("USER");
         String hashed = BCrypt.hashpw(username, BCrypt.gensalt());
         User newUser = new User(username, hashed, foundRole);
         userDAO.save(newUser);
@@ -48,13 +48,4 @@ public class UserService {
     public boolean isSamePassword(String password, String confirmPassword) {
         return password.equals(confirmPassword);
     }
-
-    // public boolean isSameEmail(String email) {
-    // User user = userDAO.findByID(email);
-
-    // if (user.isEmpty()) {
-    // return true;
-    // }
-    // return false;
-    // }
 }

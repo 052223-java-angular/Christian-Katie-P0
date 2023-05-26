@@ -20,11 +20,10 @@ public class User {
     private String roles;
     private String email;
 
-    public User(String username, String password, Roles foundRole) {
+    public User(String username, String password, Role foundRole) {
         this.id = UUID.randomUUID().toString();
         this.username = username;
         this.password = password;
         this.roles = roles;
-        this.email = email;
     }
 }

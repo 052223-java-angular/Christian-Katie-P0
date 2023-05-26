@@ -40,11 +40,6 @@ public class RegisterScreen implements IScreen {
                     break exit;
                 }
 
-                // get email
-                // email = getEmail(scanner);
-                // if (email.equals("x")) {
-                // break exit;
-
                 // confirm user info
                 clearScreen();
                 System.out.println("Please confirm your information:");
@@ -158,31 +153,6 @@ public class RegisterScreen implements IScreen {
 
         return password;
     }
-
-    // get the email of user
-    // public String getEmail(Scanner scanner) {
-    // String email = "";
-
-    // while (true) {
-    // System.out.print("\nEnter your email (x to cancel):");
-    // email = scanner.nextLine();
-
-    // if (email.equalsIgnoreCase("x")) {
-    // return "x";
-    // }
-
-    // if (!userService.isSameEmail(email)) {
-    // clearScreen();
-    // System.out.println("There is already an account with this email.");
-    // System.out.print("\nPress enter to continue...");
-    // scanner.nextLine();
-    // continue;
-    // }
-
-    // break;
-    // }
-    // return email;
-    // }
 
     // method to clear the terminal
     private void clearScreen() {
