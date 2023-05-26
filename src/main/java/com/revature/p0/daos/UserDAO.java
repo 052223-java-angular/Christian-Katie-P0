@@ -41,20 +41,18 @@ public class UserDAO implements CrudDAO<User> {
     @Override
     public User findByID(String id) {
         User login = null;
-        //create connection
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
-            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        // create connection
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "SELECT * FROM users WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, id);
-            preparedStatement.setString(2, );
-            
+
             ResultSet rs = preparedStatement.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 login = new User(
-                    rs.getString("id"), 
-                    rs.getString("username"), 
-                    rs.getString("password")
-                );
+                        rs.getString("id"),
+                        rs.getString("username"),
+                        rs.getString("password"));
             }
         } catch (SQLException sql) {
             throw new RuntimeException("Unable to access database to login user.");

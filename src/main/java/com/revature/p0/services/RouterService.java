@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.HomeScreen;
+import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.MenuScreen;
 import com.revature.p0.screens.RegisterScreen;
 import com.revature.p0.utils.Session;
@@ -21,6 +22,7 @@ public class RouterService {
                 new HomeScreen(this).start(scanner);
                 break;
             case "/login":
+                new LoginScreen().start(scanner);
                 break;
             case "/menu":
                 new MenuScreen(session).start(scanner);

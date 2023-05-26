@@ -25,6 +25,11 @@ public class UserService {
         return newUser;
     }
 
+    public User login(String username, String password) {
+        User existingUser = new User();
+        return existingUser;
+    }
+
     public boolean isValidUsername(String username) {
         return username.matches("^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$");
     }
