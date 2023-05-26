@@ -30,6 +30,8 @@ public class ConnectionFactory {
     }
 
     public Connection getConnection() {
+        // System.out.println("\nConnection: " + connection + "\n"); // keep for
+        // debugging
         return connection;
     }
 

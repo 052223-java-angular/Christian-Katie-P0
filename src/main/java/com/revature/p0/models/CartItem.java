@@ -11,7 +11,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Roles {
+
+public class CartItem {
     private String id;
-    private String name;
+    private int price;
+    private int quantity;
+    private String shoppingCartId;
+    private String productId;
 }

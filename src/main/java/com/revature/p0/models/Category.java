@@ -11,10 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Products {
+public class Category {
     private String id;
     private String name;
-    private double price;
-    private String category;
-    private String shopping_cart_id;
 }

@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import javax.management.relation.Role;
-
-import com.revature.p0.models.Roles;
+import com.revature.p0.models.Role;
 import com.revature.p0.utils.ConnectionFactory;
 
 public class RoleDAO implements CrudDAO<Role> {
@@ -45,7 +43,7 @@ public class RoleDAO implements CrudDAO<Role> {
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
-    public Optional<Roles> findByName(String name) {
+    public Optional<Role> findByName(String name) {
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             String sql = "SELECT * FROM roles WHERE name = ?";
 
@@ -54,7 +52,7 @@ public class RoleDAO implements CrudDAO<Role> {
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        Roles roles = new Roles();
+                        Role roles = new Role();
                         roles.setId(resultSet.getString("id"));
                         roles.setName(resultSet.getString("name"));
                         return Optional.of(roles);

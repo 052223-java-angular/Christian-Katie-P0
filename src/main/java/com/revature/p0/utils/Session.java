@@ -1,4 +1,6 @@
-package com.revature.p0.models;
+package com.revature.p0.utils;
+
+import com.revature.p0.models.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +22,6 @@ public class Session {
     public void setSession(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
-        // this.roleId = user.getRoleId();
-        this.email = user.getEmail();
+        this.roleId = user.getRoleId();
     }
 }

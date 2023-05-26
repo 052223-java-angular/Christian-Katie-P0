@@ -2,17 +2,23 @@ package com.revature.p0.screens;
 
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.p0.services.RouterService;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class HomeScreen implements IScreen {
+public class HomeScreen implements iScreen {
     private final RouterService router;
+    private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 
     @Override
     public void start(Scanner scanner) {
         String input = " ";
+
+        logger.info("Navigated to home screen.");
 
         exit: {
             while (true) {
@@ -27,14 +33,18 @@ public class HomeScreen implements IScreen {
 
                 switch (input.toLowerCase()) {
                     case "1":
+                        logger.info("Navigating to login screen.");
                         break;
                     case "2":
+                        logger.info("Navigating to register screen.");
                         router.navigate("/register", scanner);
                         break;
                     case "x":
-                        System.out.println("Goodbye!");
+                        logger.info("Exit home screen.");
+                        System.out.println("\nGoodbye!");
                         break exit;
                     default:
+                        logger.warn("Invalid option");
                         clearScreen();
                         System.out.println("Invalid option selected.");
                         System.out.print("\nPress enter to continue...");

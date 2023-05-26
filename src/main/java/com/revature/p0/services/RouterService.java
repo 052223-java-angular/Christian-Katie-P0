@@ -7,21 +7,26 @@ import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.HomeScreen;
 import com.revature.p0.screens.MenuScreen;
 import com.revature.p0.screens.RegisterScreen;
+import com.revature.p0.utils.Session;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class RouterService {
+    private Session session;
 
-    public void navigate(String path, Scanner scan) {
+    public void navigate(String path, Scanner scanner) {
         switch (path) {
             case "/home":
-                new HomeScreen(this).start(scan);
+                new HomeScreen(this).start(scanner);
                 break;
             case "/login":
                 break;
             case "/menu":
-                new MenuScreen();
+                new MenuScreen(session).start(scanner);
                 break;
             case "/register":
-                new RegisterScreen(getUserService()).start(scan);
+                new RegisterScreen(getUserService(), this, session).start(scanner);
                 break;
             case "/review":
                 break;

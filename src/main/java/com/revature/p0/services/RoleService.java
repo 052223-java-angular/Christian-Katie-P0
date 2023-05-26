@@ -6,8 +6,7 @@ import javax.management.relation.RoleNotFoundException;
 
 import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.daos.UserDAO;
-import com.revature.p0.models.Roles;
-import com.revature.p0.models.User;
+import com.revature.p0.models.Role;
 
 import lombok.AllArgsConstructor;
 
@@ -15,8 +14,8 @@ import lombok.AllArgsConstructor;
 public class RoleService {
     private final RoleDAO roleDAO;
 
-    public Roles findByName(String name) throws RoleNotFoundException {
-        Optional<Roles> roleOpt = roleDAO.findByName(name);
+    public Role findByName(String name) throws RoleNotFoundException {
+        Optional<Role> roleOpt = roleDAO.findByName(name);
 
         if (roleOpt.isEmpty()) {
             throw new RoleNotFoundException();

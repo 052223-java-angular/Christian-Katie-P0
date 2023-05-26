@@ -1,13 +1,14 @@
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS reviews CASCADE;
-DROP TABLE IF EXISTS products CASCADE;
-DROP TABLE IF EXISTS shopping_cart CASCADE;
 DROP TABLE IF EXISTS roles CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS shopping_carts CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS reviews CASCADE;
 DROP TABLE IF EXISTS cart_items CASCADE;
-DROP TABLE IF EXISTS order_history CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS order_items CASCADE;
 
---- Creating Tables ---
+
 CREATE TABLE roles(
     id VARCHAR PRIMARY KEY,
     name VARCHAR NOT NULL
@@ -15,90 +16,65 @@ CREATE TABLE roles(
 
 CREATE TABLE users (
     id VARCHAR PRIMARY KEY,
-    username VARCHAR NOT NULL UNIQUE,
-    email VARCHAR NOT NULL UNIQUE,
+    username VARCHAR NOT null UNIQUE,
     password VARCHAR NOT NULL,
-    role_id VARCHAR NOT NULL
-    --FOREIGN KEY (role_id) REFERENCES roles (id)
+    role_id VARCHAR NOT null,
+    FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 
-CREATE TABLE reviews (
-    id VARCHAR NOT NULL,
-    rating INT NOT NULL,
-    comments VARCHAR NOT NULL,
+CREATE TABLE shopping_carts (
+    id VARCHAR PRIMARY KEY,
     user_id VARCHAR NOT NULL,
-    product_id VARCHAR NOT NULL
-    --FOREIGN KEY (user_id) REFERENCES users (id),
-    --FOREIGN KEY (product_id) REFERENCES products (id)
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-CREATE TABLE cart_items(
+CREATE TABLE categories (
     id VARCHAR PRIMARY KEY,
-    price DECIMAL (8,2) NOT NULL,
-    quantity INT NOT NULL,
-    shpc_id VARCHAR NOT NULL
-    --FOREIGN KEY (shpc_id) REFERENCES shopping_cart (id)
-);
-
-CREATE TABLE order_history(
-    id VARCHAR PRIMARY KEY,
-    created_at DATE NOT NULL, 
-    time_stamp TIME NOT NULL,
-    user_id VARCHAR NOT NULL
-    --FOREIGN KEY (user_id) REFERENCES users (id)
-);
-
-CREATE TABLE order_items(
-    id VARCHAR PRIMARY KEY,
-    order_history_id VARCHAR NOT NULL
-    --FOREIGN KEY (order_history_id) REFERENCES order_history (id)
+    name VARCHAR NOT NULL
 );
 
 CREATE TABLE products (
     id VARCHAR PRIMARY KEY,
     name VARCHAR NOT NULL,
-    price DECIMAL (8,2) NOT NULL,
-    category VARCHAR NOT NULL,
-    cart_id VARCHAR NOT NULL,
-    order_item_id VARCHAR NOT NULL
-    --FOREIGN KEY (cart_id) REFERENCES cart_items (id),
-    --FOREIGN KEY (order_item_id) REFERENCES order_items (id)
+    price INTEGER NOT NULL,
+    category_id VARCHAR NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories (id)
 );
 
-CREATE TABLE shopping_cart (
-    id VARCHAR PRIMARY KEY,
+CREATE TABLE reviews (
+    id VARCHAR NOT NULL,
+    rating INTEGER NOT NULL,
+    comments VARCHAR NOT NULL,
     user_id VARCHAR NOT NULL,
-    quantity INT NOT NULL
-    --FOREIGN KEY (user_id) REFERENCES users (id)
+    product_id VARCHAR NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (product_id) REFERENCES products (id)
 );
 
+CREATE TABLE cart_items(
+    id VARCHAR PRIMARY KEY,
+    price INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    shopping_cart_id VARCHAR NOT NULL,
+    product_id VARCHAR NOT null,
+    FOREIGN KEY (shopping_cart_id) REFERENCES shopping_carts (id),
+    FOREIGN KEY (product_id) REFERENCES products (id)
+);
 
+CREATE TABLE orders(
+    id VARCHAR PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL, 
+    total_cost INTEGER NOT NULL,
+    user_id VARCHAR NOT null,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
 
-
-
---- Adding Foreign Keys ---
-alter table reviews
-	add foreign key (user_id) references users (id);
-	
-alter table reviews
-	add foreign key (product_id) references products (id);
-
-alter table products 
-	add foreign key (cart_id) references cart_items (id);
-
-alter table products
-	add foreign key (order_item_id) references order_items (id);
-
-alter table cart_items
-	add foreign key (shpc_id) references shopping_cart (id); 
-
-alter table order_history
-	add foreign key (user_id) references users (id);
-
-alter table order_items
-	add foreign key (order_history_id) references order_history (id);
-
-alter table shopping_cart 
-	add foreign key (user_id) references users (id);
-
-
+CREATE TABLE order_items(
+    id VARCHAR PRIMARY KEY,
+    quantity INTEGER NOT NULL,
+    price INTEGER NOT NULL,
+    order_id VARCHAR NOT NULL,
+    product_id VARCHAR NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (product_id) REFERENCES products (id)
+);
