@@ -14,11 +14,11 @@ import lombok.AllArgsConstructor;
 public class RoleService {
     private final RoleDAO roleDAO;
 
-    public Role findByName(String name) throws RoleNotFoundException {
+    public Role findByName(String name) {
         Optional<Role> roleOpt = roleDAO.findByName(name);
 
-        if (roleOpt.isEmpty()) {
-            throw new RoleNotFoundException();
+        if (roleOpt.isPresent()) {
+            // throw new RoleNotFoundException();
         }
 
         return roleOpt.get();
