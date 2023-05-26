@@ -50,7 +50,7 @@ public class HomeScreen implements Screen {
                         System.out.print("\nPress enter to continue...");
                         scanner.nextLine();
                         break;
-                }
+                }//
 
             }
         }
