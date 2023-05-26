@@ -20,7 +20,6 @@ public class Session {
     public void setSession(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
-        // this.roleId = user.getRoleId();
-        this.email = user.getEmail();
+        this.roleId = user.getRoleId();
     }
 }
