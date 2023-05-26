@@ -11,10 +11,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Reviews {
+
+public class CartItem {
     private String id;
-    private int rating;
-    private String comments;
-    private String user_id;
-    private String product_id;
+    private int price;
+    private int quantity;
+    private String shoppingCartId;
+    private String productId;
 }

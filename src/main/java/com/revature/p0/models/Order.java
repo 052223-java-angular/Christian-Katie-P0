@@ -1,5 +1,7 @@
 package com.revature.p0.models;
 
+import java.security.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +14,9 @@ import lombok.ToString;
 @Setter
 @ToString
 
-public class CartItems {
+public class Order {
     private String id;
-    private double price;
-    private int quantity;
-    private String shpc_id;
+    private String user_id;
+    private Timestamp created_at;
+    // private int time_stamp;
 }
-//Comment to commit

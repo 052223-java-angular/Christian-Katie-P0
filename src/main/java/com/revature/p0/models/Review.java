@@ -11,10 +11,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-
-public class OrderHistory {
+public class Review {
     private String id;
-    private String user_id;
-    private String created_at;
-    private int time_stamp;
+    private int rating;
+    private String comments;
+    private String userId;
+    private String productId;
 }
