@@ -51,8 +51,6 @@ public class RegisterScreen implements IScreen {
                 switch (scanner.nextLine()) {
                     case "y":
                         User createdUser = userService.register(username, password);
-                        session.setSession(createdUser);
-                        routerService.navigate("/menu", scanner);
                         break exit;
                     case "n":
                         clearScreen();
