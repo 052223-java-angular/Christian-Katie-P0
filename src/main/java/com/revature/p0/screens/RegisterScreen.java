@@ -23,7 +23,6 @@ public class RegisterScreen implements IScreen {
         String input = " ";
         String username = " ";
         String password = " ";
-        String email = " ";
 
         // loops until conditions are met
         exit: {
@@ -48,7 +47,7 @@ public class RegisterScreen implements IScreen {
                 System.out.println("Please confirm your information:");
                 System.out.println("\nUsername: " + username);
                 System.out.println("Password: " + password);
-                System.out.println("Emails: " + email);
+
                 System.out.println("\nEnter (y/n): ");
 
                 switch (scanner.nextLine()) {
@@ -81,6 +80,7 @@ public class RegisterScreen implements IScreen {
 
                 // break when info is correct
                 break exit; // will be removed
+
             }
         }
     }

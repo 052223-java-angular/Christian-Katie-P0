@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS roles CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS shopping_carts CASCADE;
-DROP TABLE IF EXISTS categories;
+DROP TABLE IF EXISTS categories CASCADE;
 DROP TABLE IF EXISTS products CASCADE;
 DROP TABLE IF EXISTS reviews CASCADE;
 DROP TABLE IF EXISTS cart_items CASCADE;
@@ -28,7 +28,7 @@ CREATE TABLE shopping_carts (
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-CREATE TABLE category (
+CREATE TABLE categories (
     id VARCHAR PRIMARY KEY,
     name VARCHAR NOT NULL
 );
@@ -38,7 +38,7 @@ CREATE TABLE products (
     name VARCHAR NOT NULL,
     price INTEGER NOT NULL,
     category_id VARCHAR NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES category (id)
+    FOREIGN KEY (category_id) REFERENCES categories (id)
 );
 
 CREATE TABLE reviews (

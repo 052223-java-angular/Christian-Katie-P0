@@ -23,7 +23,6 @@ public class UserDAO implements CrudDAO<User> {
                 preparedStatement.setString(2, obj.getUsername());
                 preparedStatement.setString(3, obj.getPassword());
                 preparedStatement.setString(4, obj.getRoleId());
-
                 preparedStatement.executeUpdate();
             }
 
@@ -36,31 +35,8 @@ public class UserDAO implements CrudDAO<User> {
         }
     }
 
-    @Override
-    public void update(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public void delete(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public User findByID(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByID'");
-    }
-
-    @Override
-    public List<User> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
     public Optional<User> findByUsername(String username) {
+
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             String sql = "SELECT * FROM users WHERE username = ?";
 
@@ -88,6 +64,30 @@ public class UserDAO implements CrudDAO<User> {
         }
 
         return Optional.empty();
+    }
+
+    @Override
+    public void update(String id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
+    @Override
+    public void delete(String id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public User findByID(String id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByID'");
+    }
+
+    @Override
+    public List<User> findAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
 }
