@@ -2,6 +2,9 @@ package com.revature.p0.screens;
 
 import java.util.Scanner;
 
+import javax.management.relation.RoleInfoNotFoundException;
+import javax.management.relation.RoleNotFoundException;
+
 import com.revature.p0.models.Session;
 import com.revature.p0.models.User;
 import com.revature.p0.services.RouterService;
@@ -50,8 +53,18 @@ public class RegisterScreen implements IScreen {
 
                 switch (scanner.nextLine()) {
                     case "y":
-                        User createdUser = userService.register(username, password);
-                        break exit;
+                        try {
+                            User createdUser = userService.register(username, password);
+                            Session session = new Session();
+                            session.setSession(createdUser);
+                            routerService.navigate("/menu", scanner);
+                            break exit;
+                        } catch (RoleNotFoundException e) {
+                            clearScreen();
+                            System.out.println("An error has occured. Please try again. " + e.getMessage());
+                            System.out.println("\nPress enter to continue...");
+                            scanner.nextLine();
+                        }
                     case "n":
                         clearScreen();
                         System.out.println("Restarting process.");
