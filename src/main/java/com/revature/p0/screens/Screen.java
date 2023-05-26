@@ -2,6 +2,6 @@ package com.revature.p0.screens;
 
 import java.util.Scanner;
 
-public interface iScreen {
+public interface Screen {
     void start(Scanner scanner);
 }
