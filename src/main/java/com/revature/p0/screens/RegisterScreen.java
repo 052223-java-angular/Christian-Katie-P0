@@ -3,6 +3,9 @@ package com.revature.p0.screens;
 import java.util.Scanner;
 import javax.management.relation.RoleNotFoundException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.revature.p0.models.User;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.services.UserService;
@@ -15,12 +18,14 @@ public class RegisterScreen implements IScreen {
     private final UserService userService;
     private final RouterService routerService;
     private Session session;
+    private static final Logger logger = LogManager.getLogger(RegisterScreen.class);
 
     @Override
     public void start(Scanner scanner) {
-        String input = " ";
         String username = " ";
         String password = " ";
+
+        logger.info("Start registration process...");
 
         // loops until conditions are met
         exit: {
@@ -30,7 +35,11 @@ public class RegisterScreen implements IScreen {
 
                 // get username
                 username = getUsername(scanner);
+
+                logger.info("username: {}", username);
+
                 if (username.equals("x")) {
+                    logger.info("Exit registration screen");
                     break exit;
                 }
 
@@ -49,6 +58,7 @@ public class RegisterScreen implements IScreen {
 
                 switch (scanner.nextLine()) {
                     case "y":
+                        logger.info("User confirmed credentials are correct.");
                         try {
                             User createdUser = userService.register(username, password);
                             session.setSession(createdUser);
@@ -56,27 +66,27 @@ public class RegisterScreen implements IScreen {
                             break exit;
                         } catch (RoleNotFoundException e) {
                             clearScreen();
-                            System.out.println("An error has occured. Please try again. " + e.getMessage());
+                            System.out.println("An error has occured. Please try again. " +
+                                    e.getMessage());
                             System.out.println("\nPress enter to continue...");
+                            e.printStackTrace();
                             scanner.nextLine();
                         }
                     case "n":
+                        logger.info("Restarting registration process...");
                         clearScreen();
                         System.out.println("Restarting process.");
                         System.out.print("\nPress enter to continue...");
                         scanner.nextLine();
                         break;
                     default:
+                        logger.info("Invalit option!");
                         clearScreen();
                         System.out.println("Invalid option selected.");
                         System.out.print("\nPress enter to continue...");
                         scanner.nextLine();
                         break;
                 }
-
-                // break when info is correct
-                break exit; // will be removed
-
             }
         }
     }
@@ -98,6 +108,7 @@ public class RegisterScreen implements IScreen {
             }
 
             if (!userService.isValidUsername(username)) {
+                logger.warn("Invalid username for: {}", username);
                 clearScreen();
                 System.out.println("Username needs to be 8 to 20 characters long.");
                 System.out.print("\nPress enter to continue...");
@@ -106,6 +117,7 @@ public class RegisterScreen implements IScreen {
             }
 
             if (!userService.isUniqueUsername(username)) {
+                logger.warn("Username is not unique for: {}", username);
                 clearScreen();
                 System.out.println("Username is not unique.");
                 System.out.print("\nPress enter to continue...");
