@@ -25,4 +25,4 @@ public class User {
         this.password = password;
         this.roleId = roleId;
     }
-}
+} // comment
