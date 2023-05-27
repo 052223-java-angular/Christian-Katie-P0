@@ -26,8 +26,12 @@ public class UserService {
     }
 
     public User login(String username, String password) {
-        User existingUser = new User();
-        return existingUser;
+        User existingUser = userDAO.findByID(username);
+        if (existingUser != null && BCrypt.checkpw(password, existingUser.getPassword())) {
+            return existingUser;
+        } else {
+            return null;
+        }
     }
 
     public boolean isValidUsername(String username) {

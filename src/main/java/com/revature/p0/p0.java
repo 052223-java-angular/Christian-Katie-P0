@@ -23,7 +23,7 @@ public class p0 {
     Scanner scan = new Scanner(System.in);
     RouterService router = new RouterService(new Session());
 
-    // NAvigate to the home screen
+    // Navigate to the home screen
     router.navigate("/home", scanner);
 
     logger.info("-------------- END APPLICATION ----------------");

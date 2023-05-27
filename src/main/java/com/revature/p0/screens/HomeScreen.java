@@ -34,6 +34,7 @@ public class HomeScreen implements Screen {
                 switch (input.toLowerCase()) {
                     case "1":
                         logger.info("Navigating to login screen.");
+                        router.navigate("/login", scanner);
                         break;
                     case "2":
                         logger.info("Navigating to register screen.");
@@ -50,7 +51,7 @@ public class HomeScreen implements Screen {
                         System.out.print("\nPress enter to continue...");
                         scanner.nextLine();
                         break;
-                }//
+                }
 
             }
         }
