@@ -45,7 +45,7 @@ public class ProductDAO implements CrudDAO<Product> {
     public List<Product> findAllByCategoryId(String id) {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "SELECT name, price FROM products WHERE category_id = ?";
+            String sql = "SELECT * FROM products WHERE category_id = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, id);
@@ -68,6 +68,7 @@ public class ProductDAO implements CrudDAO<Product> {
         } catch (ClassNotFoundException cnf) {
             throw new RuntimeException("Unable to load jdbc for products.");
         }
+        System.out.println(products);
         return products;
     }
 }

@@ -5,12 +5,14 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.p0.services.ProductService;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
 
 public class ProductScreen implements Screen {
     private Session session;
     private RouterService router;
+    private ProductService productService;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 
     /*

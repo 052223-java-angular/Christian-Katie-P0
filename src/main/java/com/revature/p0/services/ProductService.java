@@ -3,7 +3,6 @@ package com.revature.p0.services;
 import java.util.List;
 
 import com.revature.p0.daos.ProductDAO;
-import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.models.Product;
 
 import lombok.AllArgsConstructor;

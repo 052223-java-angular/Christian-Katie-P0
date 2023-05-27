@@ -30,6 +30,7 @@ public class RouterService {
                 break;
             case "/menu":
                 new MenuScreen(session).start(scanner);
+
                 break;
             case "/register":
                 new RegisterScreen(getUserService(), this, session).start(scanner);
@@ -38,14 +39,14 @@ public class RouterService {
                 break;
             case "/shoppingCart":
                 break;
-            case "/category":
-                new CategoryScreen(session).start(scanner);
-                break;
+            // case "/category":
+            // new CategoryScreen(session).start(scanner);
+            // break;
             case "/order":
                 break;
-            case "/product":
-                new ProductScreen(getProductService(), this, session).start(scanner);
-                break;
+            // case "/product":
+            // new ProductScreen(getProductService(), this, session).start(scanner);
+            // break;
             default:
                 break;
         }
