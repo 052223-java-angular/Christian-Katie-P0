@@ -22,7 +22,7 @@ public class RouterService {
                 new HomeScreen(this).start(scanner);
                 break;
             case "/login":
-                new LoginScreen().start(scanner);
+                new LoginScreen(getUserService(), this, session).start(scanner);
                 break;
             case "/menu":
                 new MenuScreen(session).start(scanner);

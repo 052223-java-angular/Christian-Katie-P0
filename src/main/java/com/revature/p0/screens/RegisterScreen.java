@@ -1,16 +1,12 @@
 package com.revature.p0.screens;
 
 import java.util.Scanner;
-import javax.management.relation.RoleNotFoundException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.revature.p0.models.User;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.services.UserService;
 import com.revature.p0.utils.Session;
-
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
