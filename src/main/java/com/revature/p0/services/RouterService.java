@@ -36,6 +36,7 @@ public class RouterService {
             case "/shoppingCart":
                 break;
             case "/category":
+                new CategoryScreen(session).start(scanner);
                 break;
             case "/order":
                 break;
