@@ -47,7 +47,6 @@ public class LoginScreen implements Screen {
                 if (existingUser != null) {
                     session.setSession(existingUser);
                     routerService.navigate("/menu", scanner);
-                    // ROUTE TO MENU SCREEN HERE
                 } else {
                     clearScreen();
                     System.out.println("Invalid username or password.");

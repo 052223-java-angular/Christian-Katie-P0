@@ -8,28 +8,28 @@ import org.apache.logging.log4j.Logger;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
 
-public class CategoryScreen implements Screen {
+public class RedstoneScreen implements Screen {
     private Session session;
     private RouterService router;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 
     @Override
     public void start(Scanner scanner) {
-        System.out.println("Welcome to the Category screen " + session.getUsername() + "!");
+        System.out.println("Welcome to the Redstone screen " + session.getUsername() + "!");
         scanner.nextLine();
 
         String input = " ";
 
-        logger.info("Navigated to Category screen.");
+        logger.info("Navigated to Menu screen.");
 
         exit: {
             while (true) {
                 clearScreen();
                 // System.out.println("Welcome to the Minecraft Store!");
                 System.out.println("\n[1] Redstone");
-                System.out.println("[2] Potions");
-                System.out.println("[3] Tools");
-                System.out.println("[4] Weapons");
+                System.out.println("[2] Repeaters");
+                System.out.println("[3] Dispensers");
+                System.out.println("[4] Hoppers");
                 System.out.println("[x] Exit");
 
                 System.out.println("\nEnter: ");
@@ -41,16 +41,16 @@ public class CategoryScreen implements Screen {
                         router.navigate("/redstone", scanner);
                         break;
                     case "2":
-                        logger.info("Navigating to Potions screen.");
-                        router.navigate("/potions", scanner);
+                        logger.info("Navigating to Repeaters screen.");
+                        router.navigate("/repeaters", scanner);
                         break;
                     case "3":
-                        logger.info("Navigating to Tools screen.");
-                        router.navigate("/tools", scanner);
+                        logger.info("Navigating to Dispenser screen.");
+                        router.navigate("/dispensers", scanner);
                         break;
                     case "4":
-                        logger.info("Navigating to Weapons screen.");
-                        router.navigate("/weapons", scanner);
+                        logger.info("Navigating to Hopper screen.");
+                        router.navigate("/hoppers", scanner);
                         break;
                     case "x":
                         logger.info("Exit home screen.");
