@@ -14,7 +14,7 @@ INSERT INTO products (id, name, price, category_id) VALUES ('16e6eda2-fc06-11ed-
 INSERT INTO products (id, name, price, category_id) VALUES ('17e6eda2-fc06-11ed-be56-0242ac120002', 'Hoe', 10, 'b6a0ard8-fbfe-11ed-be56-0242ac120002');
 INSERT INTO products (id, name, price, category_id) VALUES ('18e6eda2-fc06-11ed-be56-0242ac120002', 'Shovel', 15, 'b6a0ard8-fbfe-11ed-be56-0242ac120002');
 -- Weapon products
-INSERT INTO products (id, name, price, category_id) VALUES ('5b032800-fc06-11ed-be56-0242ac120002', 'Wodden Sword', 5, 'b6a0agd8-fbfe-11ed-be56-0242ac120002');
+INSERT INTO products (id, name, price, category_id) VALUES ('5b032800-fc06-11ed-be56-0242ac120002', 'Wooden Sword', 5, 'b6a0agd8-fbfe-11ed-be56-0242ac120002');
 INSERT INTO products (id, name, price, category_id) VALUES ('5b132800-fc06-11ed-be56-0242ac120002', 'Stone Sword', 10, 'b6a0agd8-fbfe-11ed-be56-0242ac120002');
 INSERT INTO products (id, name, price, category_id) VALUES ('5b232800-fc06-11ed-be56-0242ac120002', 'Iron Sword', 25, 'b6a0agd8-fbfe-11ed-be56-0242ac120002');
 INSERT INTO products (id, name, price, category_id) VALUES ('5b332800-fc06-11ed-be56-0242ac120002', 'Diamond Sword', 100, 'b6a0agd8-fbfe-11ed-be56-0242ac120002');

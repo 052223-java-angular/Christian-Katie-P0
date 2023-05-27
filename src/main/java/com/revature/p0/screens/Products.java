@@ -8,10 +8,67 @@ import org.apache.logging.log4j.Logger;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
 
-public class RedstoneScreen implements Screen {
+public class Products implements Screen {
     private Session session;
     private RouterService router;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
+
+    /*
+     * call redstone method()
+     * sout("Welcome to the redstone screen!)
+     */
+
+    /*
+     * call potion method()
+     * sout("Welcome to the postion screen!")
+     */
+
+    /*
+     * call tools method()
+     * sout("Welcome to the tools screen!")
+     */
+
+    /*
+     * call weapons method()
+     * sout("Welcome to the weapons screen!")
+     */
+
+    /*----------------Helper Methods------------------*/
+    /*
+     * redstone method() {
+     * [1] redstone
+     * [2] repeaters
+     * [3] dispensers
+     * [4] hoppers
+     * }
+     */
+
+    /*
+     * potions method() {
+     * [1] water breathing
+     * [2] night vision
+     * [3] weakness
+     * [4] health
+     * }
+     */
+
+    /*
+     * tools method() {
+     * [1] pickaxe
+     * [2] axe
+     * [3] hoe
+     * [4] shovel
+     * }
+     */
+
+    /*
+     * weapons method() {
+     * [1] wooden sword
+     * [2] stone sword
+     * [3] iron sword
+     * [4] diamond sword
+     * }
+     */
 
     @Override
     public void start(Scanner scanner) {

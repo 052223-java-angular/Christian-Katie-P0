@@ -65,12 +65,11 @@ public class OrderDAO implements CrudDAO<Order> {
     // @Override
     // public List<Order> findAll() {
     // List<Order> order = new ArrayList<>();
-    // try (Connection connection = ConnectionFactory.getInstance().getConnection())
-    // {
+    // try (Connection connection =
+    // ConnectionFactory.getInstance().getConnection()){
     // String sql = "SELECT * FROM orders";
 
-    // try (PreparedStatement preparedStatement = connection.prepareStatement(sql))
-    // {
+    // try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
     // ResultSet resultSet = preparedStatement.executeQuery();
 
     // while (resultSet.next()) {

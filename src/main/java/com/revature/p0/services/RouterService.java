@@ -9,7 +9,7 @@ import com.revature.p0.screens.CategoryScreen;
 import com.revature.p0.screens.HomeScreen;
 import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.MenuScreen;
-import com.revature.p0.screens.RedstoneScreen;
+import com.revature.p0.screens.Products;
 import com.revature.p0.screens.RegisterScreen;
 import com.revature.p0.utils.Session;
 
@@ -43,7 +43,7 @@ public class RouterService {
             case "/order":
                 break;
             case "/redstone":
-                new RedstoneScreen(session).start(scanner);
+                new Products(session).start(scanner);
                 break;
             default:
                 break;

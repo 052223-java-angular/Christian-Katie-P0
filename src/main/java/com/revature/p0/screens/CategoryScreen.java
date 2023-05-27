@@ -37,20 +37,20 @@ public class CategoryScreen implements Screen {
 
                 switch (input.toLowerCase()) {
                     case "1":
-                        logger.info("Navigating to Redstone screen.");
-                        router.navigate("/redstone", scanner);
+                        logger.info("Navigating to Products screen.");
+                        router.navigate("/products", scanner);
                         break;
                     case "2":
-                        logger.info("Navigating to Potions screen.");
-                        router.navigate("/potions", scanner);
+                        logger.info("Navigating to Products screen.");
+                        router.navigate("/products", scanner);
                         break;
                     case "3":
-                        logger.info("Navigating to Tools screen.");
-                        router.navigate("/tools", scanner);
+                        logger.info("Navigating to Products screen.");
+                        router.navigate("/products", scanner);
                         break;
                     case "4":
-                        logger.info("Navigating to Weapons screen.");
-                        router.navigate("/weapons", scanner);
+                        logger.info("Navigating to Products screen.");
+                        router.navigate("/products", scanner);
                         break;
                     case "x":
                         logger.info("Exit home screen.");
