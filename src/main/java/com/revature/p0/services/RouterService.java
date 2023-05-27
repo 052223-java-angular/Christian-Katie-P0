@@ -33,6 +33,10 @@ public class RouterService {
                 break;
             case "/review":
                 break;
+            case "/shoppingCart":
+                break;
+            case "/category":
+                break;
             case "/order":
                 break;
             default:

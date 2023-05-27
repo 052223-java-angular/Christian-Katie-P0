@@ -27,7 +27,7 @@ public class MenuScreen implements Screen {
                 clearScreen();
                 System.out.println("Welcome to the Minecraft Store!");
                 System.out.println("\n[1] Shopping Cart");
-                System.out.println("[2] Products");
+                System.out.println("[2] Categories");
                 System.out.println("[3] Orders");
                 System.out.println("[x] Exit");
 
@@ -41,11 +41,11 @@ public class MenuScreen implements Screen {
                         break;
                     case "2":
                         logger.info("Navigating to Products screen.");
-                        router.navigate("/register", scanner);
+                        router.navigate("/product", scanner);
                         break;
                     case "3":
                         logger.info("Navigating to Orders screen.");
-                        router.navigate("/register", scanner);
+                        router.navigate("/order", scanner);
                         break;
                     case "x":
                         logger.info("Exit home screen.");
@@ -59,7 +59,6 @@ public class MenuScreen implements Screen {
                         scanner.nextLine();
                         break;
                 }
-
             }
         }
     }
