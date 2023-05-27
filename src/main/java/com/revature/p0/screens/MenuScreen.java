@@ -50,7 +50,7 @@ public class MenuScreen implements Screen {
                     case "x":
                         logger.info("Exit home screen.");
                         System.out.println("\nGoodbye!");
-                        break exit;
+                        break;
                     default:
                         logger.warn("Invalid option");
                         clearScreen();

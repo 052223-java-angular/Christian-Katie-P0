@@ -14,5 +14,5 @@ import lombok.ToString;
 
 public class OrderItems {
     private String id;
-    private String orderHistoryId;
+    private String orderId;
 }
