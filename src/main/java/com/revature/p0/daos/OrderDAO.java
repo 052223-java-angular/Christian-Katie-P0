@@ -19,8 +19,25 @@ public class OrderDAO implements CrudDAO<Order> {
 
     @Override
     public void save(Order obj) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        // create connection
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "INSERT INTO orders (id, created_at, total_cost, user_id) VALUES (?, ?, ?, ?)";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, obj.getId());
+                preparedStatement.setTimestamp(2, obj.getCreatedAt());
+                preparedStatement.setInt(3, obj.getTotalCost());
+                preparedStatement.setString(4, obj.getUserId());
+                preparedStatement.executeUpdate();
+            }
+
+        } catch (SQLException sql) {
+            throw new RuntimeException("Unable to access database to save user.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties to save user.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc to save user.");
+        }
     }
 
     @Override
