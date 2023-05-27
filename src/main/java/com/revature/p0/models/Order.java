@@ -16,7 +16,8 @@ import lombok.ToString;
 
 public class Order {
     private String id;
-    private String user_id;
-    private Timestamp created_at;
-    // private int time_stamp;
+    private Timestamp createdAt;
+    private int totalCost;
+    private String userId;
+
 }

@@ -18,9 +18,7 @@ public class RoleService {
         Optional<Role> roleOpt = roleDAO.findByName(name);
 
         if (roleOpt.isPresent()) {
-            // throw new RoleNotFoundException();
         }
-
         return roleOpt.get();
     }
 

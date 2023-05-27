@@ -1,12 +1,9 @@
 package com.revature.p0.screens;
 
 import java.util.Scanner;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.revature.p0.services.RouterService;
-
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

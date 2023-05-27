@@ -42,64 +42,17 @@ public class LoginScreen implements Screen {
                 password = getPassword(scanner);
                 if (password.equals("x")) {
                     break exit;
-                    // } else {
-                    // if() {
-                    // System.out.println("Invalid username or password"); //invalid user or
-                    // password
-                    // System.out.println("Press enter to continue...");
-                    // System.out.println(scanner);
-                    // break;
                 }
-
                 User existingUser = userService.login(username, password);
                 if (existingUser != null) {
                     session.setSession(existingUser);
                     routerService.navigate("/menu", scanner);
-
+                    // ROUTE TO MENU SCREEN HERE
                 } else {
                     clearScreen();
                     System.out.println("Invalid username or password.");
                     break exit;
                 }
-
-                // // confirm user info
-                // clearScreen();
-                // System.out.println("Please confirm your information:");
-                // System.out.println("\nUsername: " + username);
-                // System.out.println("Password: " + password);
-                // System.out.println("\nEnter (y/n): ");
-
-                // switch (scanner.nextLine()) {
-                // case "y":
-                // logger.info("User confirmed credentials are correct.");
-                // // User existingUser = userService.register(username, password);
-                // session.setSession(existingUser);
-                // routerService.navigate("/menu", scanner);
-                // break exit;
-                // case "n":
-                // logger.info("Restarting registration process...");
-                // clearScreen();
-                // System.out.println("Restarting process.");
-                // System.out.print("\nPress enter to continue...");
-                // scanner.nextLine();
-                // break;
-                // default:
-                // // if()
-                // // System.out.println("Invalid username or password"); //invalid user or
-                // // password
-                // // System.out.println("Press enter to continue...");
-                // // System.out.println(scanner);
-                // // break;
-
-                // // } else {
-                // logger.info("Invalid option!");
-                // clearScreen();
-                // System.out.println("Invalid option selected.");
-                // System.out.print("\nPress enter to continue...");
-                // scanner.nextLine();
-                // break;
-
-                // }
             }
         }
     }
@@ -136,7 +89,6 @@ public class LoginScreen implements Screen {
     // get the password of user
     public String getPassword(Scanner scanner) {
         String password = "";
-        String confirm = "";
 
         while (true) {
             System.out.println("\nEnter a password (x to cancel): ");
@@ -153,14 +105,6 @@ public class LoginScreen implements Screen {
                 scanner.nextLine();
                 continue;
             }
-
-            // System.out.println("\nPlease confirm password(x to cancel): ");
-            // confirm = scanner.nextLine();
-
-            // if (confirm.equalsIgnoreCase("x")) {
-            // return "x";
-            // }
-            // break;
             return password;
         }
     }
