@@ -61,11 +61,11 @@ public class RoleDAO implements CrudDAO<Role> {
             }
 
         } catch (SQLException sql) {
-            throw new RuntimeException("Unable to access database.");
+            throw new RuntimeException("Unable to access database for role.");
         } catch (IOException io) {
-            throw new RuntimeException("Cannot find application.properties.");
+            throw new RuntimeException("Cannot find application.properties for role.");
         } catch (ClassNotFoundException cnf) {
-            throw new RuntimeException("Unable to load jdbc.");
+            throw new RuntimeException("Unable to load jdbc for role.");
         }
 
         return Optional.empty();

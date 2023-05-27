@@ -8,7 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
 
-public class Products implements Screen {
+public class ProductScreen implements Screen {
     private Session session;
     private RouterService router;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);

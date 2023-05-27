@@ -3,13 +3,14 @@ package com.revature.p0.services;
 import java.nio.channels.NonReadableChannelException;
 import java.util.Scanner;
 
+import com.revature.p0.daos.ProductDAO;
 import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.CategoryScreen;
 import com.revature.p0.screens.HomeScreen;
 import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.MenuScreen;
-import com.revature.p0.screens.Products;
+import com.revature.p0.screens.ProductScreen;
 import com.revature.p0.screens.RegisterScreen;
 import com.revature.p0.utils.Session;
 
@@ -42,8 +43,8 @@ public class RouterService {
                 break;
             case "/order":
                 break;
-            case "/redstone":
-                new Products(session).start(scanner);
+            case "/product":
+                new ProductScreen(getProductService(), this, session).start(scanner);
                 break;
             default:
                 break;
@@ -58,6 +59,10 @@ public class RouterService {
 
     private RoleService getRoleService() {
         return new RoleService(new RoleDAO());
+    }
+
+    private ProductService getProductService() {
+        return new ProductService(new ProductDAO());
     }
 
 }

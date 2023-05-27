@@ -62,33 +62,33 @@ public class OrderDAO implements CrudDAO<Order> {
         throw new UnsupportedOperationException("Unimplemented method 'findByID'");
     }
 
-    // @Override
-    // public List<Order> findAll() {
-    // List<Order> order = new ArrayList<>();
-    // try (Connection connection =
-    // ConnectionFactory.getInstance().getConnection()){
-    // String sql = "SELECT * FROM orders";
+    @Override
+    public List<Order> findAll() {
+        // List<Order> order = new ArrayList<>();
+        // try (Connection connection =
+        // ConnectionFactory.getInstance().getConnection()){
+        // String sql = "SELECT * FROM orders";
 
-    // try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-    // ResultSet resultSet = preparedStatement.executeQuery();
+        // try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+        // ResultSet resultSet = preparedStatement.executeQuery();
 
-    // while (resultSet.next()) {
-    // order.add(new Order(
-    // resultSet.getString("id"),
-    // resultSet.getTimestamp("created_at"),
-    // resultSet.getInt("total_cost"),
-    // resultSet.getString("user_id")));
-    // }
-    // } catch (SQLException e) {
-    // throw new RuntimeException("Unable to access database to save user.");
-    // } catch (IOException io) {
-    // throw new RuntimeException("Cannot find application.properties to save
-    // user.");
-    // } catch (ClassNotFoundException cnf) {
-    // throw new RuntimeException("Unable to load jdbc to save user.");
-    // }
-    // return order;
-    // }
+        // while (resultSet.next()) {
+        // order.add(new Order(
+        // resultSet.getString("id"),
+        // resultSet.getTimestamp("created_at"),
+        // resultSet.getInt("total_cost"),
+        // resultSet.getString("user_id")));
+        // }
+        // } catch (SQLException e) {
+        // throw new RuntimeException("Unable to access database to save user.");
+        // } catch (IOException io) {
+        // throw new RuntimeException("Cannot find application.properties to save
+        // user.");
+        // } catch (ClassNotFoundException cnf) {
+        // throw new RuntimeException("Unable to load jdbc to save user.");
+        // }
+        return null;
+        // }
 
-    // }
+    }
 }
