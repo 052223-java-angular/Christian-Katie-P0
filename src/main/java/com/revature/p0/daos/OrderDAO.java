@@ -36,22 +36,34 @@ public class OrderDAO implements CrudDAO<Order> {
         }
     }
 
-    @Override
-    public List<Order> findAll() {
-        List<Order> order = new ArrayList<>();
+    /*
+     * @param findAllByUserId() method is connecting to the local database
+     * and retrieving all products by the user_id. This ensures that the order
+     * belongs to the user that made it.
+     * 
+     * @return the related exception message should anything happen at runtime.
+     * If the method runs correctly, it will return the product's id, name, price,
+     * and category_id given a specific category id.
+     * 
+     * @author Katie Osborne
+     */
+    public List<Order> findAllByUserId(String id) {
+        List<Order> orders = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "SELECT * FROM orders";
+            String sql = "SELECT * FROM orders WHERE user_id = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                ResultSet resultSet = preparedStatement.executeQuery();
+                preparedStatement.setString(1, id);
 
-                while (resultSet.next()) {
-                    order.add(new Order(
-                            resultSet.getString("id"),
-                            resultSet.getObject("created_at", Timestamp.class),
-                            resultSet.getInt("total_cost"),
-                            resultSet.getString("user_id")));
-                    return order;
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Order order = new Order(
+                                resultSet.getString("id"),
+                                resultSet.getObject("created_at", Timestamp.class),
+                                resultSet.getInt("total_cost"),
+                                resultSet.getString("user_id"));
+                        orders.add(order);
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -61,7 +73,13 @@ public class OrderDAO implements CrudDAO<Order> {
         } catch (ClassNotFoundException cnf) {
             throw new RuntimeException("Unable to load jdbc to find all orders.");
         }
-        return null;
+        return orders;
+    }
+
+    @Override
+    public List<Order> findAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override

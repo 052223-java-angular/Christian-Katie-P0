@@ -9,6 +9,7 @@ import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
 
 public class OrderScreen implements Screen {
+    // private final OrderService orderService;
     // private final RouterService router;
     // private final Session session;
     private static final Logger logger = LogManager.getLogger(ProductScreen.class);

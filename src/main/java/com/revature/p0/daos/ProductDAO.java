@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.revature.p0.models.Product;
 import com.revature.p0.utils.ConnectionFactory;
@@ -27,8 +26,6 @@ public class ProductDAO implements CrudDAO<Product> {
      */
 
     public List<Product> findAllByCategoryId(String id) {
-        // System.out.println("Inside find all by category id");
-
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             String sql = "SELECT * FROM products WHERE category_id = ?";
