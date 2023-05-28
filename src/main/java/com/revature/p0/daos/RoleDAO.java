@@ -15,9 +15,12 @@ public class RoleDAO implements CrudDAO<Role> {
 
     /*
      * @param findByName() method selects all the types of user roles and returns
-     * them
-     * by the name of the role. This is done because the role id is hashed with a
-     * UUID.
+     * them by the name of the role. This is done because the role id is hashed
+     * with a UUID.
+     * 
+     * @return the name of the role requested from the database. If there is no
+     * match to the requested role, it returns empty. Any exception that happen
+     * at runtime will throw the coresponding message.
      * 
      * @author Katie Osborne
      */
@@ -33,6 +36,7 @@ public class RoleDAO implements CrudDAO<Role> {
                         Role roles = new Role();
                         roles.setId(resultSet.getString("id"));
                         roles.setName(resultSet.getString("name"));
+
                         return Optional.of(roles);
                     }
                 }

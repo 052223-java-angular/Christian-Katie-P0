@@ -93,8 +93,9 @@ public class RegisterScreen implements Screen {
     /*
      * @param getUsername takes in scanner and checks the username
      * to see if it's valid and unique through the userService which
-     * connects to the UserDAO. As long as the username is valid and
-     * unique, the username is returned.
+     * connects to the UserDAO. .
+     * 
+     * @return username if the username is valid and unique.
      * 
      * @author Katie Osborne
      */
@@ -137,8 +138,9 @@ public class RegisterScreen implements Screen {
      * @param getPassword takes in scanner and checks the password
      * to see if it's valid and checks if the user entered it correctly
      * the first time. This is done through the userService which
-     * connects to the UserDAO. As long as the password is valid
-     * and entered correctly, the password is returned.
+     * connects to the UserDAO.
+     * 
+     * @return password if the password is valid and entered correctly.
      * 
      * @author Katie Osborne
      */

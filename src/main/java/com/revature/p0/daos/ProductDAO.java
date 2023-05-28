@@ -19,6 +19,10 @@ public class ProductDAO implements CrudDAO<Product> {
      * and retrieving all products by the category_id. This keeps the products
      * organized by category instead of retrieving all the products at once.
      * 
+     * @return the related exception message should anything happen at runtime.
+     * If the method runs correctly, it will return the product's id, name, price,
+     * and category_id given a specific category id.
+     * 
      * @author Katie Osborne
      */
 
@@ -50,7 +54,6 @@ public class ProductDAO implements CrudDAO<Product> {
         } catch (ClassNotFoundException cnf) {
             throw new RuntimeException("Unable to load jdbc for products.");
         }
-        // System.out.println("Products " + products);
         return products;
     }
 
