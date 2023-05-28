@@ -52,18 +52,18 @@ public class CategoryScreen implements Screen {
                         break;
                     case "2":
                         logger.info("Navigating to Products screen.");
-                        router.navigate("/products/potions", scanner);
-                        // productScreen.PotionProducts();
+                        // router.navigate("/products/potions", scanner);
+                        productScreen.PotionProducts(scanner);
                         break;
                     case "3":
                         logger.info("Navigating to Products screen.");
-                        router.navigate("/products/tools", scanner);
-                        // productScreen.ToolProducts();
+                        // router.navigate("/products/tools", scanner);
+                        productScreen.ToolProducts(scanner);
                         break;
                     case "4":
                         logger.info("Navigating to Products screen.");
-                        router.navigate("/products/weapons", scanner);
-                        // productScreen.WeaponProducts();
+                        // router.navigate("/products/weapons", scanner);
+                        productScreen.WeaponProducts(scanner);
                         break;
                     case "x":
                         logger.info("Exit home screen.");

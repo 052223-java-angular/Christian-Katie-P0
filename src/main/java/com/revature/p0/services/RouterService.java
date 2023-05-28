@@ -44,20 +44,16 @@ public class RouterService {
                 break;
             case "/product/redstone":
                 new ProductScreen(getProductService(), this, session).RedstoneProducts(scanner);
-                // .start(scanner);
                 break;
-            // case "/product/potions":
-            // new ProductScreen(getProductService(), this, session,
-            // "potions").start(scanner);
-            // break;
-            // case "/product/tools":
-            // new ProductScreen(getProductService(), this, session,
-            // "tools").start(scanner);
-            // break;
-            // case "/product/weapons":
-            // new ProductScreen(getProductService(), this, session,
-            // "weapons").start(scanner);
-            // break;
+            case "/product/potion":
+                new ProductScreen(getProductService(), this, session).PotionProducts(scanner);
+                break;
+            case "/product/tool":
+                new ProductScreen(getProductService(), this, session).ToolProducts(scanner);
+                break;
+            case "/product/weapon":
+                new ProductScreen(getProductService(), this, session).WeaponProducts(scanner);
+                break;
             default:
                 break;
         }
