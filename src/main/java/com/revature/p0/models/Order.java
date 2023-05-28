@@ -1,7 +1,5 @@
 package com.revature.p0.models;
 
-import java.security.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +14,7 @@ import lombok.ToString;
 
 public class Order {
     private String id;
-    private Timestamp createdAt;
+    private Object createdAt;
     private int totalCost;
     private String userId;
 

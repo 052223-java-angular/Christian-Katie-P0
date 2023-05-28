@@ -76,7 +76,7 @@ public class ProductScreen {
                         switch (input = scanner.nextLine().toLowerCase()) {
                             case "y":
                                 logger.info("Navigating to shopping screen.");
-                                router.navigate("/shoppingCart", scanner);
+                                router.navigate("/category", scanner);
                                 break;
                             case "n":
                                 logger.info("Navigating to product screen.");
