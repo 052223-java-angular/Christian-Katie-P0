@@ -14,7 +14,15 @@ import com.revature.p0.utils.Session;
 public class p0 {
   private static final Logger logger = LogManager.getLogger(p0.class);
 
-  // Entry point of the application
+  /*
+   * TODO: FINISH DESCRIPTION OF APP
+   * 
+   * @param Entry point of the application. Upon starting the application,
+   * the user will be presented with a menus to Login, Register, or Exit.
+   * Registering will store the user's info in the local database, and then
+   * prompt the user to login. Upon logging in, the user will be presented with
+   * a menu screen to select their shopping cart, categories, or orders.
+   */
   public static void main(String args[]) throws ClassNotFoundException, SQLException, IOException {
     logger.info("-------------- START APPLICATION --------------");
     Scanner scanner = new Scanner(System.in);

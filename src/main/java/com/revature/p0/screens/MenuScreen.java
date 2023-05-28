@@ -13,6 +13,16 @@ public class MenuScreen implements Screen {
     private Session session;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 
+    /*
+     * @param start() is an abstract method implemented from the Screen interface.
+     * It has been given functionality to display MenuScreen options which allow
+     * the user to view their Shopping Cart, Categories, or Options. Shopping Cart,
+     * Category, and Orders are routed through RouterService their respective
+     * screen.
+     * Exit ends the program.
+     * 
+     * @author Katie Osborne
+     */
     @Override
     public void start(Scanner scanner) {
         // System.out.println("Welcome to the Menu screen " + session.getUsername() +
@@ -43,7 +53,6 @@ public class MenuScreen implements Screen {
                     case "2":
                         logger.info("Navigating to Categories screen.");
                         router.navigate("/category", scanner);
-                        // ProductScreen.RedstoneProducts();
                         break;
                     case "3":
                         logger.info("Navigating to Orders screen.");
@@ -69,6 +78,13 @@ public class MenuScreen implements Screen {
      * -------------------------------Helper Methods--------------------------------
      */
 
+    /*
+     * @param getPassword takes in scanner, or user input, and checks the password
+     * to see if it's valid through the userService which connects to the UserDAO.
+     * As long as the password is valid, the password is returned.
+     * 
+     * @author Katie Osborne
+     */
     private void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();

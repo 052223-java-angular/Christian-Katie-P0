@@ -19,10 +19,29 @@ public class ProductScreen {
     private final ProductService productService;
     private final RouterService router;
     private final Session session;
-    // private final String productType;
     private static final Logger logger = LogManager.getLogger(ProductScreen.class);
 
-    // Retrieves redstone products from database
+    /*
+     * @param RedstoneProducts takes in a scanner object as a parameter then
+     * displays a list
+     * of redstone items from the database allowing the user to select one. The
+     * category id is
+     * hardcoded in. The first for loop iterates the products into name and price
+     * lists. The
+     * second for loop iterates the products into a numbered list format. The user
+     * is then
+     * prompted to choose an item.
+     * 
+     * This method of retrieving products can be expanded dynamically with an
+     * infinante number
+     * of categories. The method can be copied and all that needs to change is the
+     * method name,
+     * initial print statement, and category id. The method will print out every
+     * item in the
+     * category.
+     * 
+     * @author Katie Osborne
+     */
     public void RedstoneProducts(Scanner scanner) {
 
         System.out.println("These are the redstone products:");
@@ -32,7 +51,6 @@ public class ProductScreen {
         List<String> productNames = new ArrayList<>();
         List<Integer> productPrices = new ArrayList<>();
 
-        // Populate productNames and productPrices lists with values from products
         for (Product product : products) {
             productNames.add(product.getName());
             productPrices.add(product.getPrice());
@@ -42,7 +60,6 @@ public class ProductScreen {
             System.out.println((i + 1) + ". " + productNames.get(i) + " - $" + productPrices.get(i));
         }
 
-        // user input for choice
         System.out.print("Choose a productNames item: ");
 
         while (true) {
@@ -58,16 +75,35 @@ public class ProductScreen {
         }
     }
 
-    // Retrieves potion products from database
+    /*
+     * @param PotionProducts takes in a scanner object as a parameter then displays
+     * a list
+     * of potion items from the database allowing the user to select one. The
+     * category id is
+     * hardcoded in. The first for loop iterates the products into name and price
+     * lists. The
+     * second for loop iterates the products into a numbered list format. The user
+     * is then
+     * prompted to choose an item.
+     * 
+     * This method of retrieving products can be expanded dynamically with an
+     * infinante number
+     * of categories. The method can be copied and all that needs to change is the
+     * method name,
+     * initial print statement, and category id. The method will print out every
+     * item in the
+     * category.
+     * 
+     * @author Katie Osborne
+     */
     public void PotionProducts(Scanner scanner) {
-        System.out.println("These are the redstone products:");
+        System.out.println("These are the potion products:");
         String id = "b6a0awd8-fbfe-11ed-be56-0242ac120002";
         List<Product> products = productService.findAllByCategoryId(id);
 
         List<String> productNames = new ArrayList<>();
         List<Integer> productPrices = new ArrayList<>();
 
-        // Populate productNames and productPrices lists with values from products
         for (Product product : products) {
             productNames.add(product.getName());
             productPrices.add(product.getPrice());
@@ -77,7 +113,6 @@ public class ProductScreen {
             System.out.println((i + 1) + ". " + productNames.get(i) + " - $" + productPrices.get(i));
         }
 
-        // user input for choice
         System.out.print("Choose a productNames item: ");
 
         while (true) {
@@ -93,9 +128,29 @@ public class ProductScreen {
         }
     }
 
-    // Retrieves tool products from database
+    /*
+     * @param ToolProducts takes in a scanner object as a parameter then displays a
+     * list
+     * of tool items from the database allowing the user to select one. The category
+     * id is
+     * hardcoded in. The first for loop iterates the products into name and price
+     * lists. The
+     * second for loop iterates the products into a numbered list format. The user
+     * is then
+     * prompted to choose an item.
+     * 
+     * This method of retrieving products can be expanded dynamically with an
+     * infinante number
+     * of categories. The method can be copied and all that needs to change is the
+     * method name,
+     * initial print statement, and category id. The method will print out every
+     * item in the
+     * category.
+     * 
+     * @author Katie Osborne
+     */
     public void ToolProducts(Scanner scanner) {
-        System.out.println("These are the redstone products:");
+        System.out.println("These are the tool products:");
         String id = "b6a0ard8-fbfe-11ed-be56-0242ac120002";
         List<Product> products = productService.findAllByCategoryId(id);
 
@@ -128,9 +183,29 @@ public class ProductScreen {
         }
     }
 
-    // Retrieves weapon products from database
+    /*
+     * @param WeaponProducts takes in a scanner object as a parameter then displays
+     * a list
+     * of weapon items from the database allowing the user to select one. The
+     * category id is
+     * hardcoded in. The first for loop iterates the products into name and price
+     * lists. The
+     * second for loop iterates the products into a numbered list format. The user
+     * is then
+     * prompted to choose an item.
+     * 
+     * This method of retrieving products can be expanded dynamically with an
+     * infinante number
+     * of categories. The method can be copied and all that needs to change is the
+     * method name,
+     * initial print statement, and category id. The method will print out every
+     * item in the
+     * category.
+     * 
+     * @author Katie Osborne
+     */
     public void WeaponProducts(Scanner scanner) {
-        System.out.println("These are the redstone products:");
+        System.out.println("These are the weapon products:");
         String id = "b6a0agd8-fbfe-11ed-be56-0242ac120002";
         List<Product> products = productService.findAllByCategoryId(id);
 

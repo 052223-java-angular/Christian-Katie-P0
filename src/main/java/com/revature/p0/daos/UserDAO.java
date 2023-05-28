@@ -13,7 +13,13 @@ import com.revature.p0.utils.ConnectionFactory;
 
 public class UserDAO implements CrudDAO<User> {
 
-    // creating a user account and saving in database
+    /*
+     * @param save() method is used to save the user's information after they
+     * register.
+     * The informations is stored in the local database.
+     * 
+     * @author Katie Osborne
+     */
     @Override
     public void save(User obj) {
         // create connection
@@ -37,7 +43,13 @@ public class UserDAO implements CrudDAO<User> {
         }
     }
 
-    // retrieving the account from database so the user can login
+    /*
+     * @param findByID() method retrieves users from the local database by the
+     * userId.
+     * This is done when the user logs in to their account.
+     * 
+     * @author Katie Osborne
+     */
     @Override
     public User findByID(String id) {
         // create connection

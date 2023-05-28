@@ -19,6 +19,15 @@ public class CategoryScreen implements Screen {
     private Session session;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 
+    /*
+     * @param start() is an abstract method implemented from the Screen interface.
+     * It has been given functionality to display Category menu options. Line 53
+     * instantiates
+     * a new productScreen object that routes the user to the category they picked.
+     * 
+     * @author Katie Osborne
+     */
+
     @Override
     public void start(Scanner scanner) {
 
