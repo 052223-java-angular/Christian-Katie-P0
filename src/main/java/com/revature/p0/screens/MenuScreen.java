@@ -9,8 +9,8 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class MenuScreen implements Screen {
-    private Session session;
     private final RouterService router;
+    private Session session;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 
     @Override
@@ -41,7 +41,8 @@ public class MenuScreen implements Screen {
                         break;
                     case "2":
                         logger.info("Navigating to Categories screen.");
-                        router.navigate("/category", scanner);
+                        // router.navigate("/category", scanner);
+                        ProductScreen.RedstoneProducts();
                         break;
                     case "3":
                         logger.info("Navigating to Orders screen.");
@@ -50,7 +51,7 @@ public class MenuScreen implements Screen {
                     case "x":
                         logger.info("Exit home screen.");
                         System.out.println("\nGoodbye!");
-                        break;
+                        break exit;
                     default:
                         logger.warn("Invalid option");
                         clearScreen();

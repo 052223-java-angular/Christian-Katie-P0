@@ -1,6 +1,5 @@
 package com.revature.p0.services;
 
-import java.nio.channels.NonReadableChannelException;
 import java.util.Scanner;
 
 import com.revature.p0.daos.ProductDAO;
@@ -29,8 +28,7 @@ public class RouterService {
                 new LoginScreen(getUserService(), this, session).start(scanner);
                 break;
             case "/menu":
-                new MenuScreen(session).start(scanner);
-
+                new MenuScreen(this, session).start(scanner);
                 break;
             case "/register":
                 new RegisterScreen(getUserService(), this, session).start(scanner);

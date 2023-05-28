@@ -7,7 +7,11 @@ import org.apache.logging.log4j.Logger;
 
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
+import com.revature.p0.screens.ProductScreen;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class CategoryScreen implements Screen {
     private Session session;
     private RouterService router;
@@ -38,7 +42,8 @@ public class CategoryScreen implements Screen {
                 switch (input.toLowerCase()) {
                     case "1":
                         logger.info("Navigating to Products screen.");
-                        router.navigate("/products", scanner);
+                        // router.navigate("/products", scanner);
+                        ProductScreen.RedstoneProducts();
                         break;
                     case "2":
                         logger.info("Navigating to Products screen.");

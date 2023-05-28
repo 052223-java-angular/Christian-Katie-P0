@@ -19,19 +19,21 @@ public class UserService {
 
     public User register(String username, String password) {
         Role foundRole = roleService.findByName("USER");
-        String hashed = BCrypt.hashpw(username, BCrypt.gensalt());
+        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         User newUser = new User(username, hashed, foundRole.getId());
         userDAO.save(newUser);
         return newUser;
     }
 
     public User login(String username, String password) {
-        User existingUser = userDAO.findByID(username);
-        if (existingUser != null && BCrypt.checkpw(password, existingUser.getPassword())) {
-            return existingUser;
-        } else {
-            return null;
+        Optional<User> existingUser = userDAO.findByUsername(username);
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+            if (BCrypt.checkpw(password, user.getPassword())) {
+                return user;
+            }
         }
+        return null;
     }
 
     public boolean isValidUsername(String username) {

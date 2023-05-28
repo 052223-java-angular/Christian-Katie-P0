@@ -30,10 +30,8 @@ public class LoginScreen implements Screen {
                 System.out.println("Welcome to the login screen!");
 
                 // get username
-                username = getUsername(scanner);
-
                 logger.info("username: {}", username);
-
+                username = getUsername(scanner);
                 if (username.equals("x")) {
                     logger.info("Exit login screen");
                     break exit;
@@ -43,10 +41,13 @@ public class LoginScreen implements Screen {
                 if (password.equals("x")) {
                     break exit;
                 }
+                // if username and password are correct, route to menu
                 User existingUser = userService.login(username, password);
                 if (existingUser != null) {
+                    System.out.println("Inside exsistingUser"); // for testing
                     session.setSession(existingUser);
                     routerService.navigate("/menu", scanner);
+                    break exit;
                 } else {
                     clearScreen();
                     System.out.println("Invalid username or password.");
@@ -78,7 +79,7 @@ public class LoginScreen implements Screen {
                 System.out.println("Username needs to be 8 to 20 characters long.");
                 System.out.print("\nPress enter to continue...");
                 scanner.nextLine();
-                continue;
+                // continue;
             }
             break;
         }
@@ -99,13 +100,14 @@ public class LoginScreen implements Screen {
 
             if (!userService.isValidPassword(password)) {
                 clearScreen();
-                System.out.println("Invalid password!.");
+                System.out.println("Invalid password!");
                 System.out.print("\nPress enter to continue...");
                 scanner.nextLine();
-                continue;
+                // continue;
             }
-            return password;
+            break;
         }
+        return password;
     }
 
     // method to clear the terminal

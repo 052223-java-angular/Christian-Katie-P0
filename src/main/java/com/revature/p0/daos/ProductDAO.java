@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import com.revature.p0.models.Product;
 import com.revature.p0.utils.ConnectionFactory;
 
