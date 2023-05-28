@@ -38,13 +38,11 @@ public class RegisterScreen implements Screen {
                     logger.info("Exit registration screen");
                     break exit;
                 }
-
                 // get password
                 password = getPassword(scanner);
                 if (password.equals("x")) {
                     break exit;
                 }
-
                 // confirm user info
                 clearScreen();
                 System.out.println("Please confirm your information:");
@@ -153,10 +151,8 @@ public class RegisterScreen implements Screen {
                 scanner.nextLine();
                 continue;
             }
-
             break;
         }
-
         return password;
     }
 

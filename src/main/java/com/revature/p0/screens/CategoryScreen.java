@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.p0.services.ProductService;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
 import com.revature.p0.screens.ProductScreen;
@@ -13,14 +14,17 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class CategoryScreen implements Screen {
-    private Session session;
+    ProductService productService;
     private RouterService router;
+    private Session session;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 
     @Override
     public void start(Scanner scanner) {
-        System.out.println("Welcome to the Category screen " + session.getUsername() + "!");
-        scanner.nextLine();
+
+        // System.out.println("Welcome to the Category screen " + session.getUsername()
+        // + "!");
+        // scanner.nextLine();
 
         String input = " ";
 
@@ -29,7 +33,7 @@ public class CategoryScreen implements Screen {
         exit: {
             while (true) {
                 clearScreen();
-                // System.out.println("Welcome to the Minecraft Store!");
+                System.out.println("Please select a category: ");
                 System.out.println("\n[1] Redstone");
                 System.out.println("[2] Potions");
                 System.out.println("[3] Tools");
@@ -38,29 +42,33 @@ public class CategoryScreen implements Screen {
 
                 System.out.println("\nEnter: ");
                 input = scanner.nextLine();
+                ProductScreen productScreen = new ProductScreen(productService, router, session);
 
                 switch (input.toLowerCase()) {
                     case "1":
                         logger.info("Navigating to Products screen.");
-                        // router.navigate("/products", scanner);
-                        ProductScreen.RedstoneProducts();
+                        // router.navigate("/products/redstone", scanner);
+                        productScreen.RedstoneProducts(scanner);
                         break;
                     case "2":
                         logger.info("Navigating to Products screen.");
-                        router.navigate("/products", scanner);
+                        router.navigate("/products/potions", scanner);
+                        // productScreen.PotionProducts();
                         break;
                     case "3":
                         logger.info("Navigating to Products screen.");
-                        router.navigate("/products", scanner);
+                        router.navigate("/products/tools", scanner);
+                        // productScreen.ToolProducts();
                         break;
                     case "4":
                         logger.info("Navigating to Products screen.");
-                        router.navigate("/products", scanner);
+                        router.navigate("/products/weapons", scanner);
+                        // productScreen.WeaponProducts();
                         break;
                     case "x":
                         logger.info("Exit home screen.");
                         System.out.println("\nGoodbye!");
-                        break;
+                        break exit;
                     default:
                         logger.warn("Invalid option");
                         clearScreen();

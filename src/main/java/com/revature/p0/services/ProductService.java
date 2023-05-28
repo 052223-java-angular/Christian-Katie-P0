@@ -17,7 +17,7 @@ public class ProductService {
 
     /*------------------------------Helper Method---------------------------*/
 
-    private ProductService getProductService() {
+    private static ProductService getProductService() {
         return new ProductService(new ProductDAO());
     }
 }

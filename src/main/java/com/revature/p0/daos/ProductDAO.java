@@ -45,6 +45,8 @@ public class ProductDAO implements CrudDAO<Product> {
     }
 
     public List<Product> findAllByCategoryId(String id) {
+        // System.out.println("Inside find all by category id");
+
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             String sql = "SELECT * FROM products WHERE category_id = ?";
@@ -58,19 +60,19 @@ public class ProductDAO implements CrudDAO<Product> {
                                 resultSet.getString("id"),
                                 resultSet.getString("name"),
                                 resultSet.getInt("price"),
-                                resultSet.getString("categoryId"));
+                                resultSet.getString("category_id"));
                         products.add(product);
                     }
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Unable to access database for products.");
+            throw new RuntimeException("Unable to access database for products. Error: " + e.getMessage());
         } catch (IOException io) {
             throw new RuntimeException("Cannot find application.properties for products.");
         } catch (ClassNotFoundException cnf) {
             throw new RuntimeException("Unable to load jdbc for products.");
         }
-        System.out.println(products);
+        // System.out.println("Products " + products);
         return products;
     }
 }

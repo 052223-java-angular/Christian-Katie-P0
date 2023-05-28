@@ -37,13 +37,26 @@ public class RouterService {
                 break;
             case "/shoppingCart":
                 break;
-            // case "/category":
-            // new CategoryScreen(session).start(scanner);
-            // break;
+            case "/category":
+                new CategoryScreen(getProductService(), this, session).start(scanner);
+                break;
             case "/order":
                 break;
-            // case "/product":
-            // new ProductScreen(getProductService(), this, session).start(scanner);
+            case "/product/redstone":
+                new ProductScreen(getProductService(), this, session).RedstoneProducts(scanner);
+                // .start(scanner);
+                break;
+            // case "/product/potions":
+            // new ProductScreen(getProductService(), this, session,
+            // "potions").start(scanner);
+            // break;
+            // case "/product/tools":
+            // new ProductScreen(getProductService(), this, session,
+            // "tools").start(scanner);
+            // break;
+            // case "/product/weapons":
+            // new ProductScreen(getProductService(), this, session,
+            // "weapons").start(scanner);
             // break;
             default:
                 break;

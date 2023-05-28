@@ -42,8 +42,8 @@ public class MenuScreen implements Screen {
                         break;
                     case "2":
                         logger.info("Navigating to Categories screen.");
-                        // router.navigate("/category", scanner);
-                        ProductScreen.RedstoneProducts();
+                        router.navigate("/category", scanner);
+                        // ProductScreen.RedstoneProducts();
                         break;
                     case "3":
                         logger.info("Navigating to Orders screen.");
