@@ -13,6 +13,46 @@ import com.revature.p0.utils.ConnectionFactory;
 
 public class RoleDAO implements CrudDAO<Role> {
 
+    /*
+     * @param findByName() method selects all the types of user roles and returns
+     * them by the name of the role. This is done because the role id is hashed
+     * with a UUID.
+     * 
+     * @return the name of the role requested from the database. If there is no
+     * match to the requested role, it returns empty. Any exception that happen
+     * at runtime will throw the coresponding message.
+     * 
+     * @author Katie Osborne
+     */
+    public Optional<Role> findByName(String name) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "SELECT * FROM roles WHERE name = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, name);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        Role roles = new Role();
+                        roles.setId(resultSet.getString("id"));
+                        roles.setName(resultSet.getString("name"));
+
+                        return Optional.of(roles);
+                    }
+                }
+            }
+
+        } catch (SQLException sql) {
+            throw new RuntimeException("Unable to access database for role.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties for role.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc for role.");
+        }
+
+        return Optional.empty();
+    }
+
     @Override
     public void save(Role obj) {
         // TODO Auto-generated method stub
@@ -43,31 +83,4 @@ public class RoleDAO implements CrudDAO<Role> {
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
-    public Optional<Role> findByName(String name) {
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "SELECT * FROM roles WHERE name = ?";
-
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, name);
-
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        Role roles = new Role();
-                        roles.setId(resultSet.getString("id"));
-                        roles.setName(resultSet.getString("name"));
-                        return Optional.of(roles);
-                    }
-                }
-            }
-
-        } catch (SQLException sql) {
-            throw new RuntimeException("Unable to access database.");
-        } catch (IOException io) {
-            throw new RuntimeException("Cannot find application.properties.");
-        } catch (ClassNotFoundException cnf) {
-            throw new RuntimeException("Unable to load jdbc.");
-        }
-
-        return Optional.empty();
-    }
 }

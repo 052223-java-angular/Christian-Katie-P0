@@ -16,6 +16,16 @@ public class RegisterScreen implements Screen {
     private Session session;
     private static final Logger logger = LogManager.getLogger(RegisterScreen.class);
 
+    /*
+     * @param start() is an abstract method implemented from the Screen interface.
+     * It has been given functionality to display RegisterScreen menu options which
+     * allow the user to Register or Exit. The user is propted to enter a username,
+     * password, confirm password, and upon confirmation, the username and password
+     * are stored in the local database. Then the user is routed to the LoginScreen
+     * through the RouterService. Exit ends the program.
+     * 
+     * @author Katie Osborne
+     */
     @Override
     public void start(Scanner scanner) {
         String username = " ";
@@ -38,13 +48,11 @@ public class RegisterScreen implements Screen {
                     logger.info("Exit registration screen");
                     break exit;
                 }
-
                 // get password
                 password = getPassword(scanner);
                 if (password.equals("x")) {
                     break exit;
                 }
-
                 // confirm user info
                 clearScreen();
                 System.out.println("Please confirm your information:");
@@ -57,7 +65,7 @@ public class RegisterScreen implements Screen {
                         logger.info("User confirmed credentials are correct.");
                         User createdUser = userService.register(username, password);
                         session.setSession(createdUser);
-                        routerService.navigate("/menu", scanner);
+                        routerService.navigate("/login", scanner);
                         break exit;
                     case "n":
                         logger.info("Restarting registration process...");
@@ -82,7 +90,15 @@ public class RegisterScreen implements Screen {
      * -------------------------------Helper Methods--------------------------------
      */
 
-    // get the username of user
+    /*
+     * @param getUsername takes in scanner and checks the username
+     * to see if it's valid and unique through the userService which
+     * connects to the UserDAO. .
+     * 
+     * @return username if the username is valid and unique.
+     * 
+     * @author Katie Osborne
+     */
     public String getUsername(Scanner scanner) {
         String username = "";
 
@@ -118,7 +134,16 @@ public class RegisterScreen implements Screen {
         return username;
     }
 
-    // get the password of user
+    /*
+     * @param getPassword takes in scanner and checks the password
+     * to see if it's valid and checks if the user entered it correctly
+     * the first time. This is done through the userService which
+     * connects to the UserDAO.
+     * 
+     * @return password if the password is valid and entered correctly.
+     * 
+     * @author Katie Osborne
+     */
     public String getPassword(Scanner scanner) {
         String password = "";
         String confirm = "";
@@ -153,14 +178,17 @@ public class RegisterScreen implements Screen {
                 scanner.nextLine();
                 continue;
             }
-
             break;
         }
-
         return password;
     }
 
-    // method to clear the terminal
+    /*
+     * @param ClearScreen is a method that clears the terminal.
+     * It will be implemented should and invalid option be picked.
+     * 
+     * @author Katie Osborne
+     */
     private void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
