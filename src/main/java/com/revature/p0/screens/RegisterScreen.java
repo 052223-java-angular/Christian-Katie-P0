@@ -57,7 +57,7 @@ public class RegisterScreen implements Screen {
                         logger.info("User confirmed credentials are correct.");
                         User createdUser = userService.register(username, password);
                         session.setSession(createdUser);
-                        routerService.navigate("/menu", scanner);
+                        routerService.navigate("/login", scanner);
                         break exit;
                     case "n":
                         logger.info("Restarting registration process...");

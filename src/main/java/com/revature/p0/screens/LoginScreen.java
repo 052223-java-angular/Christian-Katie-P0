@@ -27,7 +27,7 @@ public class LoginScreen implements Screen {
         exit: {
             while (true) {
                 clearScreen();
-                System.out.println("Welcome to the login screen!");
+                System.out.println("Please Login!");
 
                 // get username
                 logger.info("username: {}", username);
@@ -44,7 +44,6 @@ public class LoginScreen implements Screen {
                 // if username and password are correct, route to menu
                 User existingUser = userService.login(username, password);
                 if (existingUser != null) {
-                    System.out.println("Inside exsistingUser"); // for testing
                     session.setSession(existingUser);
                     routerService.navigate("/menu", scanner);
                     break exit;
