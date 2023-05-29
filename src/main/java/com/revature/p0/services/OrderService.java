@@ -12,8 +12,12 @@ import lombok.AllArgsConstructor;
 public class OrderService {
     private final OrderDAO orderDAO;
 
-    public List<Order> findAll() {
-        return this.orderDAO.findAll();
+    // public List<Order> findAllByUserId(String id) {
+    // return this.orderDAO.findAllByUserId(id);
+    // }
+
+    public List<Order> findAllByUsername(String username) {
+        return this.orderDAO.findAllByUsername(username);
     }
 
     public void save(Order obj) {
@@ -22,7 +26,7 @@ public class OrderService {
 
     /*------------------------------Helper Method---------------------------*/
 
-    private static OrderService getOrderService() {
+    public static OrderService getOrderService() {
         return new OrderService(new OrderDAO());
     }
 }

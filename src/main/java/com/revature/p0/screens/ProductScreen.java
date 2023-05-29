@@ -363,6 +363,7 @@ public class ProductScreen {
             }
         }
     }
+    /*--------------------------------Helper Method-----------------------------*/
 
     /*
      * @param ClearScreen is a method that clears the terminal.

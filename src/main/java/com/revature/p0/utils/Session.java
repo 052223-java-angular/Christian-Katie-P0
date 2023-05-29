@@ -18,10 +18,22 @@ public class Session {
     private String username;
     private String roleId;
     private String email;
+    // private User user;
 
     public void setSession(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.roleId = user.getRoleId();
+
+        // System.out.println("================ID: " + this.id);
     }
+
+    public boolean isLoggedIn() {
+        return id != null;
+    }
+
+    // public String getId() {
+    // System.out.println("================ID: " + this.id);
+    // return this.id;
+    // }
 }
