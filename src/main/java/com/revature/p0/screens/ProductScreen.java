@@ -75,11 +75,11 @@ public class ProductScreen {
 
                         switch (input = scanner.nextLine().toLowerCase()) {
                             case "y":
-                                logger.info("Navigating to shopping screen.");
+                                logger.info("Navigating to category screen.");
                                 router.navigate("/category", scanner);
                                 break;
                             case "n":
-                                logger.info("Navigating to product screen.");
+                                logger.info("Navigating to category screen.");
                                 router.navigate("/category", scanner);
                                 break;
                             case "x":
