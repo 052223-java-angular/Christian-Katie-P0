@@ -22,6 +22,20 @@ public class OrderScreen implements Screen {
     private final Session session;
     private static final Logger logger = LogManager.getLogger(ProductScreen.class);
 
+    /*
+     * @param start() is an abstract method implemented from the Screen interface.
+     * It has been given functionality to display OrderScreen options which allow
+     * the user to view their Orders when they are logged in to their account.
+     * 
+     * First, it checks to see if the user is logged in. If not they are routed back
+     * to the login screen. Next the username is called from the session to get all
+     * the assiciated orders that belong to that username. Then those orders are
+     * iterated through and displayed by their id, date, and total. The user can
+     * then select an order to view more details and select 'x' at anytime to go
+     * back.
+     * 
+     * @author Katie Osborne
+     */
     @Override
     public void start(Scanner scanner) {
         logger.info("User navigated to the Orders screen.");
@@ -31,9 +45,8 @@ public class OrderScreen implements Screen {
 
         if (session.isLoggedIn()) {
             String username = session.getUsername();
-            String id = session.getId();
+            // String id = session.getId();
             List<Order> orders = orderService.findAllByUsername(username);
-            // List<OrderItems> orderItems = orderService.findAllByOrderItemsId(id);
 
             for (int i = 0; i < orders.size(); i++) {
                 Order order = orders.get(i);
@@ -81,6 +94,16 @@ public class OrderScreen implements Screen {
             router.navigate("/login", scanner);
         }
     }
+    /*
+     * @param orderItems() is a method that allows the user to see the items they
+     * purchased in a given order.
+     * 
+     * A list of order items is retrieved from the selected
+     * order through the service and iterated through. Then the order items are
+     * displayed by product name, item quantity, item price, and product id.
+     * 
+     * @author Katie Osborne
+     */
 
     private void orderItems(Scanner scanner, Order selectedOrder) {
         clearScreen();
@@ -116,83 +139,6 @@ public class OrderScreen implements Screen {
             }
         }
     }
-
-    // while(true)
-
-    // {
-    // String choice = scanner.nextLine();
-    // // char choiceTwo = scanner.next().charAt('x');
-    // scanner.nextLine();
-
-    // if (Integer.parseInt(choice) == 1) {
-    // break;
-    // } else if (Integer.parseInt(choice) == 2) {
-    // System.out.println("Redfish");
-    // break;
-    // } else if (choice == "x") {
-    // System.out.println("Exiting order details");
-    // router.navigate("/order", scanner);
-    // break;
-    // } else {
-    // System.out.println("Invalid selection, please try again.");
-    // }
-    // }
-
-    // @Override
-    // public void start(Scanner scanner) {
-    // // String input = " ";
-
-    // logger.info("Navigated to the order screen.");
-
-    // // clearScreen();
-    // System.out.println("Here are your orders:");
-
-    // // User getUserId = orderService.findAllByUserId(id);
-
-    // // if (session.isLoggedIn()) {
-    // // session.setSession(orders);
-    // // productNames.add(product.getName());
-
-    // String username = "Revature1";
-
-    // System.out.println(orderService.findAllByUsername(username));
-
-    // String id = findAllByUsername(username);
-    // orderService = OrderService.getOrderService();
-
-    // List<Order> orders = orderService.findAllByUserId(id);
-
-    // List<String> orderCreatedAt = new ArrayList<>();
-    // List<Integer> orderTotalCost = new ArrayList<>();
-
-    // // Populate productNames and productPrices lists with values from products
-    // for (Order order : orders) {
-    // orderCreatedAt.add(order.getCreatedAt());
-    // orderTotalCost.add(order.getTotalCost());
-    // }
-
-    // for (int i = 0; i < orderCreatedAt.size(); i++) {
-    // System.out.println((i + 1) + ". " + orderCreatedAt.get(i) + " - $" +
-    // orderTotalCost.get(i));
-    // }
-    // // User chooses product
-
-    // System.out.print("Please select an item: ");
-
-    // while (true) {
-    // int choice = scanner.nextInt();
-    // scanner.nextLine();
-
-    // if (choice > 0 && choice <= orderCreatedAt.size())
-    // ;
-    // }
-
-    // }
-    // } else {
-    // System.out.println("Please login to review your order.");
-    // router.navigate("/login", scanner);
-    // }
-    // }
     /*--------------------------------Helper Method-----------------------------*/
 
     /*
