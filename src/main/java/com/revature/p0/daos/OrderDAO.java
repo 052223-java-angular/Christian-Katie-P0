@@ -1,7 +1,8 @@
 package com.revature.p0.daos;
 
 import java.io.IOException;
-import java.security.Timestamp;
+// import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -47,34 +48,37 @@ public class OrderDAO implements CrudDAO<Order> {
      * 
      * @author Katie Osborne
      */
-    public List<Order> findAllByUserId(String id) {
-        List<Order> orders = new ArrayList<>();
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "SELECT * FROM orders WHERE user_id = ?";
+    // public List<Order> findAllByUserId(String id) {
+    // List<Order> orders = new ArrayList<>();
+    // try (Connection connection = ConnectionFactory.getInstance().getConnection())
+    // {
+    // String sql = "SELECT * FROM orders WHERE user_id = ?";
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, id);
+    // try (PreparedStatement preparedStatement = connection.prepareStatement(sql))
+    // {
+    // preparedStatement.setString(1, id);
 
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    while (resultSet.next()) {
-                        Order order = new Order(
-                                resultSet.getString("id"),
-                                resultSet.getObject("created_at", Timestamp.class),
-                                resultSet.getInt("total_cost"),
-                                resultSet.getString("user_id"));
-                        orders.add(order);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Unable to access database to find all orders.");
-        } catch (IOException io) {
-            throw new RuntimeException("Cannot find application.properties to find all orders.");
-        } catch (ClassNotFoundException cnf) {
-            throw new RuntimeException("Unable to load jdbc to find all orders.");
-        }
-        return orders;
-    }
+    // try (ResultSet resultSet = preparedStatement.executeQuery()) {
+    // while (resultSet.next()) {
+    // Order order = new Order(
+    // resultSet.getString("id"),
+    // resultSet.getObject("created_at", Timestamp.class).toString(),
+    // resultSet.getInt("total_cost"),
+    // resultSet.getString("user_id"));
+    // orders.add(order);
+    // }
+    // }
+    // }
+    // } catch (SQLException e) {
+    // throw new RuntimeException("Unable to access database to find all orders.");
+    // } catch (IOException io) {
+    // throw new RuntimeException("Cannot find application.properties to find all
+    // orders.");
+    // } catch (ClassNotFoundException cnf) {
+    // throw new RuntimeException("Unable to load jdbc to find all orders.");
+    // }
+    // return orders;
+    // }
 
     @Override
     public List<Order> findAll() {
@@ -98,5 +102,34 @@ public class OrderDAO implements CrudDAO<Order> {
     public Order findByID(String id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findByID'");
+    }
+
+    public List<Order> findAllByUsername(String username) {
+        List<Order> orders = new ArrayList<>();
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "SELECT orders.id, orders.created_at, orders.total_cost, orders.user_id FROM orders JOIN users ON orders.user_id = users.id WHERE users.username = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, username);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Order order = new Order(
+                                resultSet.getString("id"),
+                                resultSet.getObject("created_at", Timestamp.class).toString(),
+                                resultSet.getInt("total_cost"),
+                                resultSet.getString("user_id"));
+                        orders.add(order);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to access database to find all orders.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties to find all orders.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc to find all orders.");
+        }
+        return orders;
     }
 }

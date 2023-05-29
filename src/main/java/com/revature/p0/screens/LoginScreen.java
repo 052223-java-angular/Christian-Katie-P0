@@ -41,6 +41,7 @@ public class LoginScreen implements Screen {
                 // get username
                 logger.info("username: {}", username);
                 username = getUsername(scanner);
+
                 if (username.equals("x")) {
                     logger.info("Exit login screen");
                     break exit;

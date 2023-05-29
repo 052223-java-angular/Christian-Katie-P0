@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.p0.daos.OrderDAO;
 import com.revature.p0.daos.ProductDAO;
 import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.daos.UserDAO;
@@ -54,7 +55,7 @@ public class RouterService {
                 break;
             case "/order":
                 logger.info("Navigating to the OrderScreen.");
-                // new OrderScreen(this, session).start(scanner);
+                new OrderScreen(getOrderService(), this, session).start(scanner);
                 break;
             case "/product/redstone":
                 logger.info("Navigating to the ProductScreen.");
@@ -91,4 +92,7 @@ public class RouterService {
         return new ProductService(new ProductDAO());
     }
 
+    private OrderService getOrderService() {
+        return new OrderService(new OrderDAO());
+    }
 }
