@@ -1,0 +1,16 @@
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('01AA', 2, 5, '1A1B', '72456380-fc05-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('02AA', 3, 20, '1A1B', '73456380-fc05-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('03AA', 1, 20, '2A2B', '74456380-fc05-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('04AA', 4, 15, '2A2B', '75456380-fc05-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('05AA', 1, 15, '3A3B', 'c720ab7c-fc05-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('06AA', 2, 20, '3A3B', '15e6eda2-fc06-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('07AA', 1, 5, '4A4B', '5b032800-fc06-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('08AA', 1, 20, '4A4B', '17e6eda2-fc06-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('09AA', 5, 15, '5A5B', 'c920ab7c-fc05-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('10AA', 1, 25, '5A5B', '5b232800-fc06-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('11AA', 1, 15, '6A6B', '18e6eda2-fc06-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('12AA', 1, 10, '7A7B', '5b132800-fc06-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('13AA', 3, 15, '7A7B', 'c820ab7c-fc05-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('14AA', 1, 20, '8A8B', '73456380-fc05-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('15AA', 4, 100, '9A9B', '5b332800-fc06-11ed-be56-0242ac120002');
+INSERT INTO order_items (id, quantity, price, order_id, product_id) VALUES ('16AA', 5, 15, '10A10B', '75456380-fc05-11ed-be56-0242ac120002');

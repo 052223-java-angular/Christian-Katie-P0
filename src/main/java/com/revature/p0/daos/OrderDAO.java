@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.p0.models.Order;
+import com.revature.p0.models.OrderItems;
 import com.revature.p0.utils.ConnectionFactory;
 
 public class OrderDAO implements CrudDAO<Order> {
@@ -132,4 +133,62 @@ public class OrderDAO implements CrudDAO<Order> {
         }
         return orders;
     }
+
+    public List<OrderItems> findAllByOrderItemId(String id) {
+        List<OrderItems> orderItems = new ArrayList<>();
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "SELECT * FROM order_items WHERE order_id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, id);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        OrderItems order = new OrderItems(
+                                resultSet.getString("id"),
+                                resultSet.getInt("quantity"),
+                                resultSet.getInt("price"),
+                                resultSet.getString("order_id"),
+                                resultSet.getString("product_id"));
+                        orderItems.add(order);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to access database to find all orderItems.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties to find all orderItems.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc to find all orderItems.");
+        }
+        return orderItems;
+    }
+
+    public String findProductNameById(String productId) {
+        String productName = "";
+
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "SELECT name FROM products WHERE id = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, productId);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        productName = resultSet.getString("name");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Unable to access database to find product name by id.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties to find product name by id.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc to find product name by id.");
+        }
+
+        return productName;
+    }
+
 }

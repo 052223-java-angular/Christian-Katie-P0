@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.revature.p0.models.Order;
-import com.revature.p0.models.User;
+import com.revature.p0.models.OrderItems;
 import com.revature.p0.services.OrderService;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
@@ -24,73 +24,119 @@ public class OrderScreen implements Screen {
 
     @Override
     public void start(Scanner scanner) {
+        logger.info("User navigated to the Orders screen.");
+        clearScreen();
         System.out.println("Here are your orders:");
         System.out.println("-ID-|-Date-|-Cost-");
 
         if (session.isLoggedIn()) {
             String username = session.getUsername();
+            String id = session.getId();
             List<Order> orders = orderService.findAllByUsername(username);
+            // List<OrderItems> orderItems = orderService.findAllByOrderItemsId(id);
 
             for (int i = 0; i < orders.size(); i++) {
                 Order order = orders.get(i);
                 System.out.println(
                         (i + 1) + ". " + order.getId() + "|" + order.getCreatedAt() + "|$" + order.getTotalCost());
             }
-
-            System.out.println("Select an order or enter '0' to exit:");
+            logger.info("User is selecting an order...");
+            System.out.println("Select an order or enter 'x' to go back:");
             while (true) {
-                int choice = scanner.nextInt();
-                scanner.nextLine();
+                String choice = scanner.nextLine();
 
-                if (choice > 0 && choice <= orders.size()) {
-                    // User has selected a valid order
-                    Order selectedOrder = orders.get(choice - 1);
-
-                    // Call orderDetails function for the selected order
-                    orderDetails(scanner, selectedOrder);
-
-                } else if (choice == 0) {
+                if (choice.equals("x")) {
+                    logger.info("Navigating back to Menu screen.");
                     System.out.println("Exiting order selection");
+                    router.navigate("/menu", scanner);
                     break;
                 } else {
-                    System.out.println("Invalid selection, please try again.");
+                    try {
+                        int choiceInt = Integer.parseInt(choice);
+
+                        if (choiceInt > 0 && choiceInt <= orders.size()) {
+                            // User has selected a valid order
+                            Order selectedOrder = orders.get(choiceInt - 1);
+                            // OrderItems selectOrderItems = orderItems.get(choiceInt - 1);
+
+                            // Call orderItems() method for the selected order
+                            orderItems(scanner, selectedOrder);
+                            // String print = "2A2B";
+                            // System.out.println(orderService.findAllByOrderItemsId(print));
+
+                        } else {
+                            logger.info("Invalid option!");
+                            System.out.println("Invalid selection, please try again.");
+                            break;
+                        }
+
+                    } catch (NumberFormatException e) {
+                        logger.info("Invalid input!");
+                        System.out.println("Invalid input, please try again.");
+                    }
                 }
             }
-
         } else {
             System.out.println("Please login to review your order.");
             router.navigate("/login", scanner);
         }
     }
 
-    private void orderDetails(Scanner scanner, Order selectedOrder) {
+    private void orderItems(Scanner scanner, Order selectedOrder) {
+        clearScreen();
         System.out.println("Selected Order:");
         System.out.println("Order ID: " + selectedOrder.getId());
-        System.out.println("Order Date: " + selectedOrder.getCreatedAt());
-        System.out.println("Total Cost: $" + selectedOrder.getTotalCost());
+        // Retrieve the list of order items for the selected order
+        List<OrderItems> orderItem = orderService.findAllByOrderItemId(selectedOrder.getId());
+
         System.out.println("---------------------------");
-        System.out.println("Options:");
-        System.out.println("1. Return to previous orders");
-        System.out.println("2. Print \"Redfish\"");
-        System.out.println("Choose an option or enter '0' to exit:");
+        System.out.println("No. | Product Name | Quantity | Price | Product ID");
+        System.out.println("---------------------------");
+
+        for (int i = 0; i < orderItem.size(); i++) {
+            OrderItems item = orderItem.get(i);
+            String productName = orderService.findProductNameById(item.getProductId());
+            System.out.println((i + 1) + "   | " + productName + " | " + item.getQuantity() + "        | $"
+                    + item.getPrice() + " | " + item.getProductId());
+        }
+
+        System.out.println("---------------------------");
+        System.out.println("Enter 'x' to go back:");
 
         while (true) {
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            String choice = scanner.nextLine();
 
-            if (choice == 1) {
-                break;
-            } else if (choice == 2) {
-                System.out.println("Redfish");
-                break;
-            } else if (choice == 0) {
-                System.out.println("Exiting order details");
+            if (choice.equals("x")) {
+                router.navigate("/order", scanner);
                 break;
             } else {
+                logger.info("Invalid option!");
                 System.out.println("Invalid selection, please try again.");
+                break;
             }
         }
     }
+
+    // while(true)
+
+    // {
+    // String choice = scanner.nextLine();
+    // // char choiceTwo = scanner.next().charAt('x');
+    // scanner.nextLine();
+
+    // if (Integer.parseInt(choice) == 1) {
+    // break;
+    // } else if (Integer.parseInt(choice) == 2) {
+    // System.out.println("Redfish");
+    // break;
+    // } else if (choice == "x") {
+    // System.out.println("Exiting order details");
+    // router.navigate("/order", scanner);
+    // break;
+    // } else {
+    // System.out.println("Invalid selection, please try again.");
+    // }
+    // }
 
     // @Override
     // public void start(Scanner scanner) {
