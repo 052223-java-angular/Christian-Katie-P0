@@ -5,7 +5,7 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.revature.p0.daos.CheckoutDAO;
+//import com.revature.p0.daos.CheckoutDAO;
 import com.revature.p0.daos.OrderDAO;
 import com.revature.p0.daos.ProductDAO;
 import com.revature.p0.daos.ReviewDAO;
@@ -114,8 +114,8 @@ public class RouterService {
         return new ReviewService(new ReviewDAO());
     }
 
-    public static CheckoutService getCheckoutService() {
-        return new CheckoutService(new CheckoutDAO());
-    }
+    // public static CheckoutService getCheckoutService() {
+    // return new CheckoutService(new CheckoutDAO());
+    // }
 
 }
