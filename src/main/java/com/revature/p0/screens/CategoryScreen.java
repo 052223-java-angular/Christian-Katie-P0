@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import com.revature.p0.services.ProductService;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
-import com.revature.p0.screens.ProductScreen;
 
 import lombok.AllArgsConstructor;
 
@@ -30,11 +29,6 @@ public class CategoryScreen implements Screen {
 
     @Override
     public void start(Scanner scanner) {
-
-        // System.out.println("Welcome to the Category screen " + session.getUsername()
-        // + "!");
-        // scanner.nextLine();
-
         String input = " ";
 
         logger.info("Navigated to Category screen.");
@@ -73,7 +67,7 @@ public class CategoryScreen implements Screen {
                     case "x":
                         logger.info("Exit menu screen.");
                         router.navigate("/menu", scanner);
-                        break;
+                        break exit;
                     default:
                         logger.warn("Invalid option");
                         clearScreen();

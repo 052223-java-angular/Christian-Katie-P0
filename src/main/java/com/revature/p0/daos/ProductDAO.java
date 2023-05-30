@@ -79,7 +79,7 @@ public class ProductDAO implements CrudDAO<Product> {
     }
 
     @Override
-    public List findAll() {
+    public List<Product> findAll() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }

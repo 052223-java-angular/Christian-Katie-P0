@@ -5,11 +5,13 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.p0.daos.CheckoutDAO;
 import com.revature.p0.daos.OrderDAO;
 import com.revature.p0.daos.ProductDAO;
 import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.CategoryScreen;
+import com.revature.p0.screens.CheckoutScreen;
 import com.revature.p0.screens.HomeScreen;
 import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.MenuScreen;
@@ -73,6 +75,10 @@ public class RouterService {
                 logger.info("Navigating to the ProductScreen.");
                 new ProductScreen(getProductService(), this, session).WeaponProducts(scanner);
                 break;
+            case "/checkout":
+                logger.info("Navigating to the CheckoutScreen.");
+                // new CheckoutScreen(getCheckoutService(), this, session).start(scanner);
+                break;
             default:
                 break;
         }
@@ -95,4 +101,9 @@ public class RouterService {
     private OrderService getOrderService() {
         return new OrderService(new OrderDAO());
     }
+
+    public static CheckoutService getCheckoutService() {
+        return new CheckoutService(new CheckoutDAO());
+    }
+
 }

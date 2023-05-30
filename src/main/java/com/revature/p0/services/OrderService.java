@@ -5,7 +5,6 @@ import java.util.List;
 import com.revature.p0.daos.OrderDAO;
 import com.revature.p0.models.Order;
 import com.revature.p0.models.OrderItems;
-import com.revature.p0.models.Product;
 
 import lombok.AllArgsConstructor;
 

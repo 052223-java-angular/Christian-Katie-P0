@@ -25,10 +25,6 @@ public class MenuScreen implements Screen {
      */
     @Override
     public void start(Scanner scanner) {
-        // System.out.println("Welcome to the Menu screen " + session.getUsername() +
-        // "!");
-        // scanner.nextLine();
-
         String input = " ";
 
         logger.info("Navigated to Menu screen.");
