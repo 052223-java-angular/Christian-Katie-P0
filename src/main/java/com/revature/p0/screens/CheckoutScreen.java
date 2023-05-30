@@ -1,62 +1,48 @@
 package com.revature.p0.screens;
 
 import java.util.Scanner;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.revature.p0.services.CheckoutService;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class MenuScreen implements Screen {
+public class CheckoutScreen implements Screen {
+    private final CheckoutService checkoutService;
     private final RouterService router;
     private Session session;
     private static final Logger logger = LogManager.getLogger(HomeScreen.class);
 
-    /*
-     * @param start() is an abstract method implemented from the Screen interface.
-     * It has been given functionality to display MenuScreen options which allow
-     * the user to view their Shopping Cart, Categories, or Options. Shopping Cart,
-     * Category, and Orders are routed through RouterService their respective
-     * screen.
-     * Exit ends the program.
-     * 
-     * @author Katie Osborne
-     */
     @Override
     public void start(Scanner scanner) {
         String input = " ";
 
-        logger.info("Navigated to Menu screen.");
+        logger.info("Navigated to the Checkout screen.");
 
         exit: {
             while (true) {
                 clearScreen();
-                System.out.println("Welcome to the Minecraft Store!");
-                System.out.println("\n[1] Shopping Cart");
-                System.out.println("[2] Categories");
-                System.out.println("[3] Orders");
-                System.out.println("[x] Exit");
+                System.out.println("Are you ready to checkout?");
+                System.out.println("\nEnter (y/n) ");
 
-                System.out.println("\nEnter: ");
-                input = scanner.nextLine();
-
-                switch (input.toLowerCase()) {
-                    case "1":
-                        logger.info("Navigating to Shopping Cart screen.");
+                switch (input = scanner.nextLine().toLowerCase()) {
+                    case "y":
+                        logger.info("User is checking out.");
+                        // router.navigate("/category", scanner);
+                        // checkoutService.findAllByShoppingCartId(getId());
+                        break;
+                    case "n":
+                        logger.info("Navigating to ShoppingCart screen.");
                         router.navigate("/shoppingCart", scanner);
                         break;
-                    case "2":
-                        logger.info("Navigating to Categories screen.");
-                        router.navigate("/category", scanner);
-                        break;
-                    case "3":
-                        logger.info("Navigating to Orders screen.");
-                        router.navigate("/order", scanner);
-                        break;
                     case "x":
-                        logger.info("Exit home screen.");
-                        System.out.println("\nGoodbye!");
+                        logger.info("Exit to exit screen.");
+                        // System.out.println("\nGoodbye!");
                         break exit;
                     default:
                         logger.warn("Invalid option");

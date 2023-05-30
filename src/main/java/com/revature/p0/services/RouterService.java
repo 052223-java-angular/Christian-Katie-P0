@@ -5,11 +5,14 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.revature.p0.daos.CheckoutDAO;
 import com.revature.p0.daos.OrderDAO;
 import com.revature.p0.daos.ProductDAO;
+import com.revature.p0.daos.ReviewDAO;
 import com.revature.p0.daos.RoleDAO;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.CategoryScreen;
+//import com.revature.p0.screens.CheckoutScreen;
 import com.revature.p0.screens.HomeScreen;
 import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.MenuScreen;
@@ -51,7 +54,7 @@ public class RouterService {
                 break;
             case "/category":
                 logger.info("Navigating to the CategoryScreen.");
-                new CategoryScreen(getProductService(), this, session).start(scanner);
+                new CategoryScreen(getReviewService(), getProductService(), this, session).start(scanner);
                 break;
             case "/order":
                 logger.info("Navigating to the OrderScreen.");
@@ -59,19 +62,23 @@ public class RouterService {
                 break;
             case "/product/redstone":
                 logger.info("Navigating to the ProductScreen.");
-                new ProductScreen(getProductService(), this, session).RedstoneProducts(scanner);
+                new ProductScreen(getReviewService(), getProductService(), this, session).RedstoneProducts(scanner);
                 break;
             case "/product/potion":
                 logger.info("Navigating to the ProductScreen.");
-                new ProductScreen(getProductService(), this, session).PotionProducts(scanner);
+                new ProductScreen(getReviewService(), getProductService(), this, session).PotionProducts(scanner);
                 break;
             case "/product/tool":
                 logger.info("Navigating to the ProductScreen.");
-                new ProductScreen(getProductService(), this, session).ToolProducts(scanner);
+                new ProductScreen(getReviewService(), getProductService(), this, session).ToolProducts(scanner);
                 break;
             case "/product/weapon":
                 logger.info("Navigating to the ProductScreen.");
-                new ProductScreen(getProductService(), this, session).WeaponProducts(scanner);
+                new ProductScreen(getReviewService(), getProductService(), this, session).WeaponProducts(scanner);
+                break;
+            case "/checkout":
+                logger.info("Navigating to the CheckoutScreen.");
+                // new CheckoutScreen(getCheckoutService(), this, session).start(scanner);
                 break;
             default:
                 break;
@@ -95,4 +102,13 @@ public class RouterService {
     private OrderService getOrderService() {
         return new OrderService(new OrderDAO());
     }
+
+    public static ReviewService getReviewService() {
+        return new ReviewService(new ReviewDAO());
+    }
+
+    public static CheckoutService getCheckoutService() {
+        return new CheckoutService(new CheckoutDAO());
+    }
+
 }

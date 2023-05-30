@@ -8,7 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.revature.p0.models.Product;
+import com.revature.p0.models.Review;
 import com.revature.p0.services.ProductService;
+import com.revature.p0.services.ReviewService;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
 
@@ -16,6 +18,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class ProductScreen {
+    private final ReviewService reviewService;
     private final ProductService productService;
     private final RouterService router;
     private final Session session;
@@ -58,8 +61,18 @@ public class ProductScreen {
         for (int i = 0; i < productNames.size(); i++) {
             System.out.println((i + 1) + ". " + productNames.get(i) + " - $" + productPrices.get(i));
         }
+
+        // Adding divider line between products and reviews
+        System.out.println("\n\n-----------------------------------");
+
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println("Reviews for " + productNames.get(i) + ":");
+            String product_id = products.get(i).getId();
+            displayReviews(product_id);
+        }
+
         // User chooses product
-        System.out.print("Please select an item: ");
+        System.out.print("\nPlease select an item: ");
 
         while (true) {
             int choice = scanner.nextInt();
@@ -143,6 +156,16 @@ public class ProductScreen {
         for (int i = 0; i < productNames.size(); i++) {
             System.out.println((i + 1) + ". " + productNames.get(i) + " - $" + productPrices.get(i));
         }
+
+        // Adding divider line between products and reviews
+        System.out.println("\n\n-----------------------------------");
+
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println("Reviews for " + productNames.get(i) + ":");
+            String product_id = products.get(i).getId();
+            displayReviews(product_id);
+        }
+
         // User chooses product
         System.out.print("Please select and item: ");
 
@@ -227,6 +250,15 @@ public class ProductScreen {
 
         for (int i = 0; i < productNames.size(); i++) {
             System.out.println((i + 1) + ". " + productNames.get(i) + " - $" + productPrices.get(i));
+        }
+
+        // Adding divider line between products and reviews
+        System.out.println("\n\n-----------------------------------");
+
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println("Reviews for " + productNames.get(i) + ":");
+            String product_id = products.get(i).getId();
+            displayReviews(product_id);
         }
 
         // User chooses product
@@ -315,6 +347,15 @@ public class ProductScreen {
             System.out.println((i + 1) + ". " + productNames.get(i) + " - $" + productPrices.get(i));
         }
 
+        // Adding divider line between products and reviews
+        System.out.println("\n\n-----------------------------------");
+
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println("Reviews for " + productNames.get(i) + ":");
+            String product_id = products.get(i).getId();
+            displayReviews(product_id);
+        }
+
         // User chooses product
         System.out.print("Please select an item: ");
 
@@ -364,6 +405,20 @@ public class ProductScreen {
         }
     }
     /*--------------------------------Helper Method-----------------------------*/
+
+    public void displayReviews(String product_id) {
+        List<Review> reviews = reviewService.findReviewByProductId(product_id);
+
+        for (Review review : reviews) {
+            if (reviews.size() == 0) {
+                System.out.println("No reviews for this product yet.");
+            } else {
+                System.out.println("Rating: " + review.getRating());
+                System.out.println("Comments: " + review.getComments());
+                System.out.println("-----------------------------------");
+            }
+        }
+    }
 
     /*
      * @param ClearScreen is a method that clears the terminal.

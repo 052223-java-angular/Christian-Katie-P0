@@ -8,54 +8,44 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.p0.models.Product;
+import com.revature.p0.models.Review;
 import com.revature.p0.utils.ConnectionFactory;
 
-public class ProductDAO implements CrudDAO<Product> {
+public class ReviewDAO implements CrudDAO<Review> {
 
-    /*
-     * @param findAllByCategoryId() method is connecting to the local database
-     * and retrieving all products by the category_id. This keeps the products
-     * organized by category instead of retrieving all the products at once.
-     * 
-     * @return the related exception message should anything happen at runtime.
-     * If the method runs correctly, it will return the product's id, name, price,
-     * and category_id given a specific category id.
-     * 
-     * @author Katie Osborne
-     */
+    public List<Review> findReviewByProductId(String productId) {
+        List<Review> reviews = new ArrayList<>();
 
-    public List<Product> findAllByCategoryId(String id) {
-        List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "SELECT * FROM products WHERE category_id = ?";
+            String sql = "SELECT * FROM reviews WHERE product_id = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, id);
+                preparedStatement.setString(1, productId);
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
-                        Product product = new Product(
+                        Review review = new Review(
                                 resultSet.getString("id"),
-                                resultSet.getString("name"),
-                                resultSet.getInt("price"),
-                                resultSet.getString("category_id"));
-                        products.add(product);
+                                resultSet.getInt("rating"),
+                                resultSet.getString("comments"),
+                                resultSet.getString("user_id"),
+                                resultSet.getString("product_id"));
+                        reviews.add(review);
                     }
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Unable to access database for products.");
+            throw new RuntimeException("Unable to access database to find reviews by product_id.");
         } catch (IOException io) {
-            throw new RuntimeException("Cannot find application.properties for products.");
+            throw new RuntimeException("Cannot find application.properties to find reviews by product_id.");
         } catch (ClassNotFoundException cnf) {
-            throw new RuntimeException("Unable to load jdbc for products.");
+            throw new RuntimeException("Unable to load jdbc to find reviews by product_id.");
         }
-        return products;
+        return reviews;
     }
 
     @Override
-    public void save(Product obj) {
+    public void save(Review obj) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
@@ -73,13 +63,13 @@ public class ProductDAO implements CrudDAO<Product> {
     }
 
     @Override
-    public Product findByID(String id) {
+    public Review findByID(String id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findByID'");
     }
 
     @Override
-    public List<Product> findAll() {
+    public List<Review> findAll() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
