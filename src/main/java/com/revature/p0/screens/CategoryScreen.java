@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.revature.p0.services.ProductService;
+import com.revature.p0.services.ReviewService;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
 
@@ -13,6 +14,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class CategoryScreen implements Screen {
+    ReviewService reviewService;
     ProductService productService;
     private RouterService router;
     private Session session;
@@ -45,7 +47,7 @@ public class CategoryScreen implements Screen {
 
                 System.out.println("\nEnter: ");
                 input = scanner.nextLine();
-                ProductScreen productScreen = new ProductScreen(productService, router, session);
+                ProductScreen productScreen = new ProductScreen(reviewService, productService, router, session);
 
                 switch (input.toLowerCase()) {
                     case "1":

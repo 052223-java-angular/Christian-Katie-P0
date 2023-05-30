@@ -11,15 +11,18 @@ import com.revature.p0.utils.*;
 
 public class ShoppingCartDAO {
 
-     /*
-     * @param showShoppingCart(shopping cart) is connecting to the local database and shows all the items
-     *  that a user has in their shopping cart. If the cart is empty then it will say the shopping cart is
-     *  empty.
+    /*
+     * @param showShoppingCart(shopping cart) is connecting to the local database
+     * and shows all the items
+     * that a user has in their shopping cart. If the cart is empty then it will say
+     * the shopping cart is
+     * empty.
      * 
      * @return the related exception message should anything happen at runtime.
      * If the method runs correctly, it will return all items in the user's cart.
      * 
-     * @param addToShoppingCart(cart items) is connectiong to the local database and allows the user
+     * @param addToShoppingCart(cart items) is connectiong to the local database and
+     * allows the user
      * to add items to their shopping cart.
      * 
      * 
@@ -47,32 +50,30 @@ public class ShoppingCartDAO {
         return null;
     }
 
-    public CartItem addToShoppingCart(CartItem cartItem){
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
+    public CartItem addToShoppingCart(CartItem cartItem) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO cart_items (quantity) VALUES (?)";
 
-            try(PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, ((CartItem) ps).getQuantity());
-                try(ResultSet rs = ps.executeQuery()){
-                    if(rs.next()){
-                        //int generatedMsgID = (int) rs.getLong(1);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        // int generatedMsgID = (int) rs.getLong(1);
                         String generatedID = rs.getString(1); // generated cart item id
                         // int getPrice = rs.getInt(2); // price
                         // String shpCartID = rs.getString(3); // shopping cart ID
                         // String productID = rs.getString(4); // product ID
-                        return new CartItem(generatedID, cartItem.getPrice(), cartItem.getQuantity(), cartItem.getShoppingCartId(), cartItem.getProductId());
+                        return new CartItem(generatedID, cartItem.getPrice(), cartItem.getQuantity(),
+                                cartItem.getShoppingCartId(), cartItem.getProductId());
                     }
                 }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Can Not Add Item To Cart.");
             e.printStackTrace();
         }
 
         return null;
     }
-
-
 
 }

@@ -12,10 +12,6 @@ import lombok.AllArgsConstructor;
 public class OrderService {
     private final OrderDAO orderDAO;
 
-    // public List<Order> findAllByUserId(String id) {
-    // return this.orderDAO.findAllByUserId(id);
-    // }
-
     public List<Order> findAllByUsername(String username) {
         return this.orderDAO.findAllByUsername(username);
     }
