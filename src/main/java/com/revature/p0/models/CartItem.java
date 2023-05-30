@@ -17,4 +17,14 @@ public class CartItem {
     private int quantity;
     private String shoppingCartId;
     private String productId;
+
+    public int getQuantity(){
+        return quantity;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity = quantity;
+    }
+
+
 }
