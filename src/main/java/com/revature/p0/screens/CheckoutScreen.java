@@ -1,14 +1,10 @@
 package com.revature.p0.screens;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.revature.p0.models.CartItem;
-import com.revature.p0.models.Product;
 import com.revature.p0.services.CheckoutService;
 import com.revature.p0.services.RouterService;
 import com.revature.p0.utils.Session;
@@ -38,7 +34,7 @@ public class CheckoutScreen implements Screen {
                     case "y":
                         logger.info("User is checking out.");
                         // router.navigate("/category", scanner);
-                        // CALL CHECKOUT METHOD
+                        // checkoutService.findAllByShoppingCartId(getId());
                         break;
                     case "n":
                         logger.info("Navigating to ShoppingCart screen.");
@@ -58,33 +54,6 @@ public class CheckoutScreen implements Screen {
                 }
             }
         }
-    }
-
-    private List<Product> cartItems(Scanner scanner) {
-        List<Product> cartItem = new ArrayList<>();
-        boolean done = false;
-
-        while (!done) {
-            System.out.println("Cart Items");
-            System.out.println("---------------------------");
-            System.out.println("No. | Product Name | Quantity | Price | Product ID");
-            System.out.println("---------------------------");
-
-            for (int i = 0; i < cartItem.size(); i++) {
-                Product product = cartItem.get(i);
-                // String productName =
-                // checkoutService.findProductNameById(item.getProductId());
-                System.out.println(
-                        (i + 1) + "   | " + product.getName() + "  | $" + product.getPrice() + " | " + product.getId());
-            }
-
-            System.out.println("---------------------------");
-            System.out.println("Enter 'x' to go back:");
-
-        }
-
-        checkoutService.findAllByShoppingCartId(getId());
-
     }
 
     /*
