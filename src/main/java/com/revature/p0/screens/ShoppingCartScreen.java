@@ -30,12 +30,14 @@ public class ShoppingCartScreen implements Screen{
         
         clearScreen();
         
-        System.out.println("Shopping Cart:");
-        System.out.println("-Items-|-Price-|-Quantity-");
+        System.out.println("Welcome to your Shopping Cart.");
+        //System.out.println("-Items-|-Price-|-Quantity-");
 
-        if(session.isLoggedIn()){
+        // started the screen logic
+        // if(session.isLoggedIn()){
+        //     System.out.println("These are the current items in your shopping cart.");   
             
-        }
+        // }
     }
     
 
