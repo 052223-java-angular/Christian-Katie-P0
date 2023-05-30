@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import com.revature.p0.daos.OrderDAO;
 import com.revature.p0.daos.ProductDAO;
 import com.revature.p0.daos.RoleDAO;
+import com.revature.p0.daos.ShoppingCartDAO;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.CategoryScreen;
 import com.revature.p0.screens.HomeScreen;
@@ -48,6 +49,7 @@ public class RouterService {
                 break;
             case "/shoppingCart":
                 logger.info("Navigating to the ShoppingCartScreen.");
+                //new ShoppingCartScreen() NEED SHOPPING CART SCREEN
                 break;
             case "/category":
                 logger.info("Navigating to the CategoryScreen.");
@@ -95,4 +97,10 @@ public class RouterService {
     private OrderService getOrderService() {
         return new OrderService(new OrderDAO());
     }
+
+    private ShoppingCartService getShoppingCartService(){
+        return new ShoppingCartService(new ShoppingCartDAO());
+    }
+
+
 }

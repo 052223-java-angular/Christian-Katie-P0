@@ -19,6 +19,17 @@ public class ShoppingCartService {
         return shoppingCartDAO.addToShoppingCart(cartItem);
     }
 
+    public CartItem removItem(String cartItemID){
+        return shoppingCartDAO.removeItem(cartItemID);
+    }
+
+    public CartItem changeQuantity(String cartItemID, CartItem cartItem){
+        shoppingCartDAO.changeQuantity(cartItemID, cartItem);
+        return shoppingCartDAO.getCartItemByID(cartItemID);
+    }
+
+
+
     /*------------------------------Helper Method---------------------------*/
     public static ShoppingCartService gShoppingCartService(){
         return new ShoppingCartService(new ShoppingCartDAO());
