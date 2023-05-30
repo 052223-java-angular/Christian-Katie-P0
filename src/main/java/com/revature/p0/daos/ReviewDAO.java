@@ -12,7 +12,17 @@ import com.revature.p0.models.Review;
 import com.revature.p0.utils.ConnectionFactory;
 
 public class ReviewDAO implements CrudDAO<Review> {
-
+    /*
+     * @param findReviewByProductId() method is connecting to the local database
+     * and retrieving all reviews by product_id. This keeps the reviews
+     * organized by product and as a result will only show reviews of products in
+     * the chosen category.
+     * 
+     * @return a list of reviews with the id, rating, comments, user_is, and
+     * product_id.
+     * 
+     * @author Katie Osborne
+     */
     public List<Review> findReviewByProductId(String productId) {
         List<Review> reviews = new ArrayList<>();
 

@@ -20,8 +20,13 @@ public class p0 {
    * @param Entry point of the application. Upon starting the application,
    * the user will be presented with a menus to Login, Register, or Exit.
    * Registering will store the user's info in the local database, and then
-   * prompt the user to login. Upon logging in, the user will be presented with
-   * a menu screen to select their shopping cart, categories, or orders.
+   * prompt the user to login. Upon logging in, the user will be presented
+   * with a menu screen to select their shopping cart, categories, or orders.
+   * Categories will take the user to the categories screen where they can
+   * choose a category and see a list of those products and reviews. Upon
+   * selecting a product the user can choose to put it into their cart or
+   * not. Backing out to the menu screen, the user can look at their past
+   * orders and the items in that order.
    */
   public static void main(String args[]) throws ClassNotFoundException, SQLException, IOException {
     logger.info("-------------- START APPLICATION --------------");

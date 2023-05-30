@@ -28,6 +28,13 @@ public class RouterService {
     private Session session;
     private static final Logger logger = LogManager.getLogger(RouterService.class);
 
+    /*
+     * @param navigate() method routes all the endpoints from their service layer
+     * to the correct screen. The router serviece holds all the screens together
+     * and deploys them when needed.
+     * 
+     * @author Katie Osborne.
+     */
     public void navigate(String path, Scanner scanner) {
         switch (path) {
             case "/home":

@@ -27,15 +27,18 @@ public class ProductScreen {
     /*
      * @param RedstoneProducts takes in a scanner object as a parameter then
      * displays a list of redstone items from the database allowing the user
-     * to select one. The category id is hardcoded in. The first for loop iterates
+     * to select one. The categoryId is hardcoded in. The first for loop iterates
      * the products into name and price lists. The second for loop iterates the
-     * products into a numbered list format. The user is then prompted to choose
-     * an item.
+     * products into a numbered list format. The products are displayed as well
+     * as the reviews for the products showing the rating and comments. The user
+     * is then prompted to choose an item.
      * 
      * This method of retrieving products can be expanded dynamically with an
      * infinante number of categories. The method can be copied and all that
      * needs to change is the method name, initial print statement, and category
-     * id. The method will print out every item in the category.
+     * id. The method will print out every item in the category. Since new
+     * products do not yet have reviews, the new reviews section for the product
+     * will read, "There are no reviews for this product yet."
      * 
      * @author Katie Osborne
      */
@@ -57,7 +60,7 @@ public class ProductScreen {
             productNames.add(product.getName());
             productPrices.add(product.getPrice());
         }
-
+        // Populate productNames and productPrices in a numbered list together.
         for (int i = 0; i < productNames.size(); i++) {
             System.out.println((i + 1) + ". " + productNames.get(i) + " - $" + productPrices.get(i));
         }
@@ -122,16 +125,20 @@ public class ProductScreen {
     }
 
     /*
-     * @param PotionProducts takes in a scanner object as a parameter then displays
-     * a list of potion items from the database allowing the user to select one. The
-     * category id is hardcoded in. The first for loop iterates the products into
-     * name and price lists. The second for loop iterates the products into a
-     * numbered list format. The user is then prompted to choose an item.
+     * @param PotionProducts takes in a scanner object as a parameter then
+     * displays a list of potion items from the database allowing the user
+     * to select one. The categoryId is hardcoded in. The first for loop iterates
+     * the products into name and price lists. The second for loop iterates the
+     * products into a numbered list format. The products are displayed as well
+     * as the reviews for the products showing the rating and comments. The user
+     * is then prompted to choose an item.
      * 
      * This method of retrieving products can be expanded dynamically with an
      * infinante number of categories. The method can be copied and all that
      * needs to change is the method name, initial print statement, and category
-     * id. The method will print out every item in the category.
+     * id. The method will print out every item in the category. Since new
+     * products do not yet have reviews, the new reviews section for the product
+     * will read, "There are no reviews for this product yet."
      * 
      * @author Katie Osborne
      */
@@ -184,7 +191,7 @@ public class ProductScreen {
 
                         switch (input = scanner.nextLine().toLowerCase()) {
                             case "y":
-                                logger.info("Navigating to shopping screen.");
+                                logger.info("Navigating to shoppingcart screen.");
                                 router.navigate("/shoppingCart", scanner);
                                 break;
                             case "n":
@@ -217,16 +224,20 @@ public class ProductScreen {
     }
 
     /*
-     * @param ToolProducts takes in a scanner object as a parameter then displays a
-     * list of tool items from the database allowing the user to select one. The
-     * category id is hardcoded in. The first for loop iterates the products into
-     * name and price lists. The second for loop iterates the products into a
-     * numbered list format. The user is then prompted to choose an item.
+     * @param ToolProducts takes in a scanner object as a parameter then
+     * displays a list of tool items from the database allowing the user
+     * to select one. The category id is hardcoded in. The first for loop iterates
+     * the products into name and price lists. The second for loop iterates the
+     * products into a numbered list format. The products are displayed as well
+     * as the reviews for the products showing the rating and comments. The user
+     * is then prompted to choose an item.
      * 
      * This method of retrieving products can be expanded dynamically with an
      * infinante number of categories. The method can be copied and all that
      * needs to change is the method name, initial print statement, and category
-     * id. The method will print out every item in the category.
+     * id. The method will print out every item in the category. Since new
+     * products do not yet have reviews, the new reviews section for the product
+     * will read, "There are no reviews for this product yet."
      * 
      * @author Katie Osborne
      */
@@ -279,7 +290,7 @@ public class ProductScreen {
 
                         switch (input = scanner.nextLine().toLowerCase()) {
                             case "y":
-                                logger.info("Navigating to shopping screen.");
+                                logger.info("Navigating to shoppingcart screen.");
                                 router.navigate("/shoppingCart", scanner);
                                 break;
                             case "n":
@@ -312,16 +323,20 @@ public class ProductScreen {
     }
 
     /*
-     * @param WeaponProducts takes in a scanner object as a parameter then displays
-     * a list of weapon items from the database allowing the user to select one. The
-     * category id is hardcoded in. The first for loop iterates the products into
-     * name and price lists. The second for loop iterates the products into a
-     * numbered list format. The user is then prompted to choose an item.
+     * @param WeaponProducts takes in a scanner object as a parameter then
+     * displays a list of weapon items from the database allowing the user
+     * to select one. The category id is hardcoded in. The first for loop iterates
+     * the products into name and price lists. The second for loop iterates the
+     * products into a numbered list format. The products are displayed as well
+     * as the reviews for the products showing the rating and comments. The user
+     * is then prompted to choose an item.
      * 
      * This method of retrieving products can be expanded dynamically with an
      * infinante number of categories. The method can be copied and all that
      * needs to change is the method name, initial print statement, and category
-     * id. The method will print out every item in the category.
+     * id. The method will print out every item in the category. Since new
+     * products do not yet have reviews, the new reviews section for the product
+     * will read, "There are no reviews for this product yet."
      * 
      * @author Katie Osborne
      */
@@ -374,11 +389,11 @@ public class ProductScreen {
 
                         switch (input = scanner.nextLine().toLowerCase()) {
                             case "y":
-                                logger.info("Navigating to shopping screen.");
+                                logger.info("Navigating to shoppingcart screen.");
                                 router.navigate("/shoppingCart", scanner);
                                 break;
                             case "n":
-                                logger.info("Navigating to product screen.");
+                                logger.info("Navigating to category screen.");
                                 router.navigate("/category", scanner);
                                 break;
                             case "x":
@@ -407,6 +422,19 @@ public class ProductScreen {
     }
     /*--------------------------------Helper Method-----------------------------*/
 
+    /*
+     * @param displayReviews() retrieves a list of reviews by calling the
+     * reviewService to get a list or reviews by productId. The method then
+     * checks to see if the review list is empty and if so will print, "There
+     * are no reviews for this product yet." If there are reviews for the product,
+     * it iterates through them and displays the rating and comments for that
+     * product's review. The dashed lines are to seperate the reviews for
+     * readability.
+     * 
+     * @return reviews which include rating and comment based on productId.
+     * 
+     * @author Katie Osborne
+     */
     public void displayReviews(String product_id) {
         List<Review> reviews = reviewService.findReviewByProductId(product_id);
 

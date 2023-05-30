@@ -22,9 +22,9 @@ public class CategoryScreen implements Screen {
 
     /*
      * @param start() is an abstract method implemented from the Screen interface.
-     * It has been given functionality to display Category menu options. Line 53
-     * instantiates
-     * a new productScreen object that routes the user to the category they picked.
+     * It has been given functionality to display Category menu options. The four
+     * categories all route through the RouterService to four different methods
+     * on the product screen.
      * 
      * @author Katie Osborne
      */

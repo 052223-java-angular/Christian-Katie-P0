@@ -57,7 +57,7 @@ public class OrderDAO implements CrudDAO<Order> {
      * is selected through the join, the result set is added to a new order object
      * and returned.
      * 
-     * @return the orders list containing the orders by username.
+     * @return a list containing the orders by username.
      * 
      * @author Katie Osborne
      */
@@ -97,7 +97,7 @@ public class OrderDAO implements CrudDAO<Order> {
      * query is selected, the result set is added to a new order object and
      * returned.
      * 
-     * @return the orderItems list containing the orderItems by order item id.
+     * @return a list containing the orderItems by order item id.
      * 
      * @author Katie Osborne
      */
@@ -134,10 +134,7 @@ public class OrderDAO implements CrudDAO<Order> {
      * @param findProductNameById() method is connected to the local database and
      * retrieves a product name by product id.
      * 
-     * An empty string is declared and named productName. Once the product name
-     * is queried, the result set is returned.
-     * 
-     * @return productName.
+     * @return the productName given a productId.
      * 
      * @author Katie Osborne
      */

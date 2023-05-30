@@ -18,8 +18,7 @@ public class MenuScreen implements Screen {
      * It has been given functionality to display MenuScreen options which allow
      * the user to view their Shopping Cart, Categories, or Options. Shopping Cart,
      * Category, and Orders are routed through RouterService their respective
-     * screen.
-     * Exit ends the program.
+     * screen. Exit ends the program.
      * 
      * @author Katie Osborne
      */
