@@ -65,6 +65,7 @@ public class ProductScreen {
         // Adding divider line between products and reviews
         System.out.println("\n\n-----------------------------------");
 
+        // Displays product review for the category
         for (int i = 0; i < products.size(); i++) {
             System.out.println("Reviews for " + productNames.get(i) + ":");
             String product_id = products.get(i).getId();
@@ -409,10 +410,11 @@ public class ProductScreen {
     public void displayReviews(String product_id) {
         List<Review> reviews = reviewService.findReviewByProductId(product_id);
 
-        for (Review review : reviews) {
-            if (reviews.size() == 0) {
-                System.out.println("No reviews for this product yet.");
-            } else {
+        if (reviews.isEmpty()) {
+            System.out.println("There are no reviews for this product yet.");
+            System.out.println("-----------------------------------");
+        } else {
+            for (Review review : reviews) {
                 System.out.println("Rating: " + review.getRating());
                 System.out.println("Comments: " + review.getComments());
                 System.out.println("-----------------------------------");

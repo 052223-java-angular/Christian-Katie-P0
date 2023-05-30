@@ -40,7 +40,6 @@ public class MenuScreen implements Screen {
 
                 System.out.println("\nEnter: ");
                 input = scanner.nextLine();
-
                 switch (input.toLowerCase()) {
                     case "1":
                         logger.info("Navigating to Shopping Cart screen.");
@@ -65,9 +64,11 @@ public class MenuScreen implements Screen {
                         System.out.println("Invalid option selected.");
                         System.out.print("\nPress enter to continue...");
                         scanner.nextLine();
+                        // scanner.close();
                         break;
                 }
             }
+
         }
     }
 
