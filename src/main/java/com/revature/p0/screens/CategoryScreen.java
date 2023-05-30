@@ -44,7 +44,6 @@ public class CategoryScreen implements Screen {
                 System.out.println("[3] Tools");
                 System.out.println("[4] Weapons");
                 System.out.println("[x] Exit");
-
                 System.out.println("\nEnter: ");
                 input = scanner.nextLine();
                 ProductScreen productScreen = new ProductScreen(reviewService, productService, router, session);
@@ -69,7 +68,7 @@ public class CategoryScreen implements Screen {
                     case "x":
                         logger.info("Exit menu screen.");
                         router.navigate("/menu", scanner);
-                        break exit;
+                        break;
                     default:
                         logger.warn("Invalid option");
                         clearScreen();

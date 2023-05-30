@@ -382,8 +382,8 @@ public class ProductScreen {
                                 break;
                             case "x":
                                 logger.info("Exit to exit screen.");
-                                // System.out.println("\nGoodbye!");
-                                break exit;
+                                router.navigate("/category", scanner);
+                                break;
                             default:
                                 logger.warn("Invalid option");
                                 clearScreen();

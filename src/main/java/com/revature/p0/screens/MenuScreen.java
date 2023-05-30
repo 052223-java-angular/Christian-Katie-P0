@@ -56,8 +56,9 @@ public class MenuScreen implements Screen {
                         break;
                     case "x":
                         logger.info("Exit home screen.");
-                        System.out.println("\nGoodbye!");
-                        break exit;
+                        // System.out.println("\nGoodbye!");
+                        router.navigate("/home", scanner);
+                        break;
                     default:
                         logger.warn("Invalid option");
                         clearScreen();
