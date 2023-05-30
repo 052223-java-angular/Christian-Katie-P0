@@ -55,19 +55,19 @@ public class CategoryScreen implements Screen {
 
                 switch (input.toLowerCase()) {
                     case "1":
-                        logger.info("Navigating to Products screen.");
+                        logger.info("Navigating to products/redstone screen.");
                         productScreen.RedstoneProducts(scanner);
                         break;
                     case "2":
-                        logger.info("Navigating to Products screen.");
+                        logger.info("Navigating to products/postions screen.");
                         productScreen.PotionProducts(scanner);
                         break;
                     case "3":
-                        logger.info("Navigating to Products screen.");
+                        logger.info("Navigating to products/tools screen.");
                         productScreen.ToolProducts(scanner);
                         break;
                     case "4":
-                        logger.info("Navigating to Products screen.");
+                        logger.info("Navigating to proucts/weapons screen.");
                         productScreen.WeaponProducts(scanner);
                         break;
                     case "x":
