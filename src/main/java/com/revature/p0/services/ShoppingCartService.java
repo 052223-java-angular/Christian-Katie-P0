@@ -18,7 +18,7 @@ public class ShoppingCartService {
     public CartItem addToShoppingCart(CartItem cartItem){
         return shoppingCartDAO.addToShoppingCart(cartItem);
     }
-
+  
     /*------------------------------Helper Method---------------------------*/
     public static ShoppingCartService gShoppingCartService(){
         return new ShoppingCartService(new ShoppingCartDAO());

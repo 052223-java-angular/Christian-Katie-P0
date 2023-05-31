@@ -10,6 +10,7 @@ import com.revature.p0.daos.OrderDAO;
 import com.revature.p0.daos.ProductDAO;
 import com.revature.p0.daos.ReviewDAO;
 import com.revature.p0.daos.RoleDAO;
+import com.revature.p0.daos.ShoppingCartDAO;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.CategoryScreen;
 //import com.revature.p0.screens.CheckoutScreen;
@@ -51,6 +52,7 @@ public class RouterService {
                 break;
             case "/shoppingCart":
                 logger.info("Navigating to the ShoppingCartScreen.");
+                //new ShoppingCartScreen() NEED SHOPPING CART SCREEN
                 break;
             case "/category":
                 logger.info("Navigating to the CategoryScreen.");
