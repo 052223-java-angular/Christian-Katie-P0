@@ -90,29 +90,27 @@ public class UserDAO implements CrudDAO<User> {
      */
     @Override
     public User findByID(String id) {
-        // // create connection
-        // try (Connection connection = ConnectionFactory.getInstance().getConnection())
-        // {
-        // String sql = "SELECT * FROM users WHERE id = ?";
-        // PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        // preparedStatement.setString(1, id);
-        // // ResultSet object to retrieve user with matching id.
-        // ResultSet rs = preparedStatement.executeQuery();
-        // if (rs.next()) {
-        // User login = new User(
-        // rs.getString("id"),
-        // rs.getString("username"),
-        // rs.getString("password"));
-        // return login;
-        // }
-        // } catch (SQLException sql) {
-        // throw new RuntimeException("Unable to access database to login user.");
-        // } catch (IOException io) {
-        // throw new RuntimeException("Cannot find application.properties to login
-        // user.");
-        // } catch (ClassNotFoundException cnf) {
-        // throw new RuntimeException("Unable to load jdbc to login user.");
-        // }
+        // create connection
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "SELECT * FROM users WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, id);
+            // ResultSet object to retrieve user with matching id.
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                User login = new User(
+                        rs.getString("id"),
+                        rs.getString("username"),
+                        rs.getString("password"));
+                return login;
+            }
+        } catch (SQLException sql) {
+            throw new RuntimeException("Unable to access database to login user.");
+        } catch (IOException io) {
+            throw new RuntimeException("Cannot find application.properties to loginuser.");
+        } catch (ClassNotFoundException cnf) {
+            throw new RuntimeException("Unable to load jdbc to login user.");
+        }
         return null;
     }
 

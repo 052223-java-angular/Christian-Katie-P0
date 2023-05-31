@@ -46,29 +46,23 @@ public class CategoryScreen implements Screen {
                 System.out.println("[x] Exit");
                 System.out.println("\nEnter: ");
                 input = scanner.nextLine();
-                // ProductScreen productScreen = new ProductScreen(reviewService,
-                // productService, router, session);
 
                 switch (input.toLowerCase()) {
                     case "1":
                         logger.info("Navigating to products/redstone screen.");
                         router.navigate("/product/redstone", scanner);
-                        // productScreen.RedstoneProducts(scanner);
                         break;
                     case "2":
                         logger.info("Navigating to products/postions screen.");
                         router.navigate("/product/potion", scanner);
-                        // productScreen.PotionProducts(scanner);
                         break;
                     case "3":
                         logger.info("Navigating to products/tools screen.");
                         router.navigate("/product/tool", scanner);
-                        // productScreen.ToolProducts(scanner);
                         break;
                     case "4":
                         logger.info("Navigating to products/weapons screen.");
                         router.navigate("/product/weapon", scanner);
-                        // productScreen.WeaponProducts(scanner);
                         break;
                     case "x":
                         logger.info("Exit menu screen.");

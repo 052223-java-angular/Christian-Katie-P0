@@ -55,17 +55,17 @@ public class ProductScreen {
         List<String> productNames = new ArrayList<>();
         List<Integer> productPrices = new ArrayList<>();
 
-        // Populate productNames and productPrices lists with values from products
+        // Creates productNames and productPrices lists with values from products
         for (Product product : products) {
             productNames.add(product.getName());
             productPrices.add(product.getPrice());
         }
-        // Populate productNames and productPrices in a numbered list together.
+        // Adds productNames and productPrices in a numbered list together.
         for (int i = 0; i < productNames.size(); i++) {
             System.out.println((i + 1) + ". " + productNames.get(i) + " - $" + productPrices.get(i));
         }
 
-        // Adding divider line between products and reviews
+        // Divider line
         System.out.println("\n\n-----------------------------------");
 
         // Displays product review for the category
@@ -192,7 +192,7 @@ public class ProductScreen {
                         switch (input = scanner.nextLine().toLowerCase()) {
                             case "y":
                                 logger.info("Navigating to shoppingcart screen.");
-                                router.navigate("/shoppingCart", scanner);
+                                router.navigate("/category", scanner);
                                 break;
                             case "n":
                                 logger.info("Navigating to product screen.");
@@ -200,7 +200,6 @@ public class ProductScreen {
                                 break;
                             case "x":
                                 logger.info("Exit to exit screen.");
-                                // System.out.println("\nGoodbye!");
                                 break exit;
                             default:
                                 logger.warn("Invalid option");
@@ -291,7 +290,7 @@ public class ProductScreen {
                         switch (input = scanner.nextLine().toLowerCase()) {
                             case "y":
                                 logger.info("Navigating to shoppingcart screen.");
-                                router.navigate("/shoppingCart", scanner);
+                                router.navigate("/category", scanner);
                                 break;
                             case "n":
                                 logger.info("Navigating to product screen.");
@@ -299,7 +298,6 @@ public class ProductScreen {
                                 break;
                             case "x":
                                 logger.info("Exit to exit screen.");
-                                // System.out.println("\nGoodbye!");
                                 break exit;
                             default:
                                 logger.warn("Invalid option");
@@ -390,7 +388,7 @@ public class ProductScreen {
                         switch (input = scanner.nextLine().toLowerCase()) {
                             case "y":
                                 logger.info("Navigating to shoppingcart screen.");
-                                router.navigate("/shoppingCart", scanner);
+                                router.navigate("/category", scanner);
                                 break;
                             case "n":
                                 logger.info("Navigating to category screen.");
