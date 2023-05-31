@@ -19,7 +19,7 @@ public class OrderScreen implements Screen {
     private OrderService orderService;
     private final RouterService router;
     private final Session session;
-    private static final Logger logger = LogManager.getLogger(ProductScreen.class);
+    private static final Logger logger = LogManager.getLogger(OrderScreen.class);
 
     /*
      * @param start() is an abstract method implemented from the Screen interface.

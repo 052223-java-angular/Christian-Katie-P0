@@ -14,7 +14,7 @@ public class LoginScreen implements Screen {
     private final UserService userService;
     private final RouterService routerService;
     private Session session;
-    private static final Logger logger = LogManager.getLogger(RegisterScreen.class);
+    private static final Logger logger = LogManager.getLogger(LoginScreen.class);
 
     /*
      * @param start() is an abstract method implemented from the Screen interface.

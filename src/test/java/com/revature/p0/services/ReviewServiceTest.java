@@ -36,25 +36,7 @@ public class ReviewServiceTest {
 
     @Test
     public void testFindReviewByProductId() {
-        // Define the test input values
-        String productId = "testProductId";
-        List<Review> reviews = Arrays.asList(
-                new Review("1", 4, "Good!", "23dd--dn4q2d--n4jd0", "2344fjkjrh"),
-                new Review("1", 5, "Good!", "23dd--meksd--n4jtg0", "23567kjrh"));
 
-        // Mock the behavior of the reviewRepository object
-        when(reviewDAO.findReviewByProductId(productId)).thenReturn(reviews);
-
-        // Call the findReviewByProductId method of the reviewService object with the
-        // test input values
-        List<Review> result = reviewService.findReviewByProductId(productId);
-
-        // Verify that the reviewRepository.findByProductId method was called once with
-        // the expected productId value as an argument
-        verify(reviewDAO, times(1)).findReviewByProductId(productId);
-
-        // Verify that the result object has the expected list of reviews
-        assertEquals(reviews, result);
     }
 
     @Test

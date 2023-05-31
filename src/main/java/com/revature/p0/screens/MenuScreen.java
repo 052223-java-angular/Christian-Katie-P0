@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 public class MenuScreen implements Screen {
     private final RouterService router;
     private Session session;
-    private static final Logger logger = LogManager.getLogger(HomeScreen.class);
+    private static final Logger logger = LogManager.getLogger(MenuScreen.class);
 
     /*
      * @param start() is an abstract method implemented from the Screen interface.
