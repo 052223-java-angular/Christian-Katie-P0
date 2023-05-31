@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class ConnectionFactory {
     private static ConnectionFactory instance;
-    private Connection connection;
+    private static Connection connection;
 
     private ConnectionFactory() throws ClassNotFoundException, SQLException, IOException {
         Class.forName("org.postgresql.Driver");
@@ -30,6 +30,8 @@ public class ConnectionFactory {
     }
 
     public Connection getConnection() {
+        // System.out.println("\nConnection: " + connection + "\n"); // keep for
+        // debugging
         return connection;
     }
 
