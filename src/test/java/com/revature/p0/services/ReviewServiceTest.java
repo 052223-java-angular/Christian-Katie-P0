@@ -5,6 +5,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,11 +37,15 @@ public class ReviewServiceTest {
 
     @Test
     public void testFindReviewByProductId() {
+        String productId = "ebf4-w3jb-dbj32";
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(new Review());
 
-    }
+        when(reviewDAO.findReviewByProductId(productId)).thenReturn(reviews);
 
-    @Test
-    public void testGetReviewService() {
+        List<Review> review = reviewService.findReviewByProductId(productId);
+
+        assertEquals(reviews, review);
 
     }
 }
