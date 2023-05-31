@@ -5,15 +5,12 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//import com.revature.p0.daos.CheckoutDAO;
 import com.revature.p0.daos.OrderDAO;
 import com.revature.p0.daos.ProductDAO;
 import com.revature.p0.daos.ReviewDAO;
 import com.revature.p0.daos.RoleDAO;
-import com.revature.p0.daos.ShoppingCartDAO;
 import com.revature.p0.daos.UserDAO;
 import com.revature.p0.screens.CategoryScreen;
-//import com.revature.p0.screens.CheckoutScreen;
 import com.revature.p0.screens.HomeScreen;
 import com.revature.p0.screens.LoginScreen;
 import com.revature.p0.screens.MenuScreen;
@@ -54,12 +51,9 @@ public class RouterService {
                 logger.info("Navigating to the RegisterScreen.");
                 new RegisterScreen(getUserService(), this, session).start(scanner);
                 break;
-            case "/review":
-                logger.info("Navigating to the ReviewScreen.");
-                break;
             case "/shoppingCart":
                 logger.info("Navigating to the ShoppingCartScreen.");
-                //new ShoppingCartScreen() NEED SHOPPING CART SCREEN
+                // new ShoppingCartScreen() NEED SHOPPING CART SCREEN
                 break;
             case "/category":
                 logger.info("Navigating to the CategoryScreen.");
@@ -87,7 +81,6 @@ public class RouterService {
                 break;
             case "/checkout":
                 logger.info("Navigating to the CheckoutScreen.");
-                // new CheckoutScreen(getCheckoutService(), this, session).start(scanner);
                 break;
             default:
                 break;
@@ -115,9 +108,5 @@ public class RouterService {
     public static ReviewService getReviewService() {
         return new ReviewService(new ReviewDAO());
     }
-
-    // public static CheckoutService getCheckoutService() {
-    // return new CheckoutService(new CheckoutDAO());
-    // }
 
 }

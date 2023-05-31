@@ -23,10 +23,10 @@ import com.revature.p0.models.Role;
 import com.revature.p0.models.User;
 
 public class UserServiceTest {
-    @Mock
-    private UserDAO userDao;
 
-    @InjectMocks
+    @Mock
+    private UserDAO userDAO;
+    @Mock
     private RoleService roleService;
 
     private UserService userService;
@@ -37,38 +37,26 @@ public class UserServiceTest {
         MockitoAnnotations.openMocks(this);
 
         // Create a new instance of the UserService class with the mocked dependencies
-        userService = new UserService(userDao, roleService);
+        userService = new UserService(userDAO, roleService);
     }
 
     @Test
-    public void testIsSamePassword() {
-        String password = "password123";
-        String confirmPassword = "password123";
-        String differentPassword = "differentPassword123";
+    public void testRegister() {
+        // Define the test input values
+        String username = "testUser";
+        String password = "testPassword";
 
-        assertTrue(userService.isSamePassword(password, confirmPassword));
-        assertFalse(userService.isSamePassword(password, differentPassword));
-    }
+        Role role = new Role("weknvoi392", "USER");
+        User expected = new User(username, BCrypt.hashpw(password, BCrypt.gensalt()), role.getId());
 
-    @Test
-    public void testIsUniqueUsername() {
-        String existingUsername = "existingUser";
-        String newUsername = "newUser";
+        when(roleService.findByName("USER")).thenReturn(role);
+        doNothing().when(userDAO).save(any(User.class));
 
-        when(userDao.findByUsername(existingUsername)).thenReturn(Optional.of(new User()));
-        when(userDao.findByUsername(newUsername)).thenReturn(Optional.empty());
+        User user = userService.register(username, password);
 
-        assertFalse(userService.isUniqueUsername(existingUsername));
-        assertTrue(userService.isUniqueUsername(newUsername));
-    }
+        verify(userDAO, times(1)).save(any(User.class));
 
-    @Test
-    public void testIsValidPassword() {
-        String validPassword = "Valid123";
-        String invalidPassword = "invalid";
-
-        assertTrue(userService.isValidPassword(validPassword));
-        assertFalse(userService.isValidPassword(invalidPassword));
+        assertEquals(expected.getUsername(), user.getUsername());
     }
 
     @Test
@@ -81,38 +69,34 @@ public class UserServiceTest {
     }
 
     // @Test
-    // public void testLogin() {
-    // String validUsername = "Revature1";
-    // String validPassword = "Revature1";
+    // public void testIsUniqueUsername() {
+    // String existingUsername = "existingUser";
+    // String newUsername = "newUser";
 
-    // String invalidUsername = "Revature";
-    // String invalidPassword = "Revature";
+    // when(userDAO.findByUsername(existingUsername)).thenReturn(Optional.of(new
+    // User()));
+    // when(userDAO.findByUsername(newUsername)).thenReturn(Optional.empty());
 
-    // assertTrue(userService.login(validUsername, validPassword));
-    // assertFalse(userService.login(invalidUsername, invalidPassword));
-
+    // assertFalse(userService.isUniqueUsername(existingUsername));
+    // assertTrue(userService.isUniqueUsername(newUsername));
     // }
 
     @Test
-    public void testRegister() {
-        // Define the test input values
-        String username = "testUser";
-        String password = "testPassword";
-        Role role = new Role("cd7a196a-b4a1-4f2a-a6fc-902cc887ab71", "USER");
-        User user = new User(username, BCrypt.hashpw(password, BCrypt.gensalt()), role.getId());
+    public void testIsValidPassword() {
+        String validPassword = "Valid123";
+        String invalidPassword = "invalid";
 
-        // Mock the behavior of the roleService and userDao objects
-        when(roleService.findByName("USER")).thenReturn(role);
-        doNothing().when(userDao).save(any(User.class));
+        assertTrue(userService.isValidPassword(validPassword));
+        assertFalse(userService.isValidPassword(invalidPassword));
+    }
 
-        // Call the register method of the userService object with the test input values
-        User result = userService.register(username, password);
+    @Test
+    public void testIsSamePassword() {
+        String password = "password123";
+        String confirmPassword = "password123";
+        String differentPassword = "differentPassword123";
 
-        // Verify that the userDao.save method was called once with any User object as
-        // an argument
-        verify(userDao, times(1)).save(any(User.class));
-
-        // Verify that the result object has the expected username value
-        assertEquals(username, result.getUsername());
+        assertTrue(userService.isSamePassword(password, confirmPassword));
+        assertFalse(userService.isSamePassword(password, differentPassword));
     }
 }
