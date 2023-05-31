@@ -2,7 +2,7 @@ package com.revature.p0.daos;
 
 import com.revature.p0.models.ShoppingCart;
 import com.revature.p0.models.CartItem;
-import com.revature.p0.models.Product;
+
 import java.util.*;
 
 import javax.annotation.processing.Generated;
@@ -11,6 +11,7 @@ import java.sql.*;
 import com.revature.p0.utils.*;
 
 public class ShoppingCartDAO {
+
 
      /*
      * @param showShoppingCart(shopping cart) is connecting to the local database and shows all the items
@@ -48,19 +49,21 @@ public class ShoppingCartDAO {
         return null;
     }
 
-    public CartItem addToShoppingCart(CartItem cartItem){
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()){
+    public CartItem addToShoppingCart(CartItem cartItem) {
+        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             String sql = "INSERT INTO cart_items (quantity) VALUES (?)";
 
-            try(PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, ((CartItem) ps).getQuantity());
-                try(ResultSet rs = ps.executeQuery()){
-                    if(rs.next()){
-                        //int generatedMsgID = (int) rs.getLong(1);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        // int generatedMsgID = (int) rs.getLong(1);
+                      
                         String generatedID = rs.getString(1); // generated cart item id
                         // int getPrice = rs.getInt(2); // price
                         // String shpCartID = rs.getString(3); // shopping cart ID
                         // String productID = rs.getString(4); // product ID
+
                         return new CartItem(generatedID, cartItem.getPrice(), cartItem.getQuantity(), cartItem.getShoppingCartId(), cartItem.getProductId());
                     }
                 }
@@ -112,6 +115,7 @@ public class ShoppingCartDAO {
         }
         catch(Exception e){
             System.out.println("Could not get cart item by its ID.");
+
             e.printStackTrace();
         }
         return null;

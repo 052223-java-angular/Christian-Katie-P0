@@ -81,7 +81,6 @@ public class OrderDAO implements CrudDAO<Order> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new RuntimeException("Unable to access database to find all orders.");
         } catch (IOException io) {
             throw new RuntimeException("Cannot find application.properties to find all orders.");
@@ -123,7 +122,6 @@ public class OrderDAO implements CrudDAO<Order> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new RuntimeException("Unable to access database to find all orderItems.");
         } catch (IOException io) {
             throw new RuntimeException("Cannot find application.properties to find all orderItems.");
@@ -160,7 +158,6 @@ public class OrderDAO implements CrudDAO<Order> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new RuntimeException("Unable to access database to find product name by id.");
         } catch (IOException io) {
             throw new RuntimeException("Cannot find application.properties to find product name by id.");
