@@ -22,9 +22,9 @@ public class CategoryScreen implements Screen {
 
     /*
      * @param start() is an abstract method implemented from the Screen interface.
-     * It has been given functionality to display Category menu options. Line 53
-     * instantiates
-     * a new productScreen object that routes the user to the category they picked.
+     * It has been given functionality to display Category menu options. The four
+     * categories all route through the RouterService to four different methods
+     * on the product screen.
      * 
      * @author Katie Osborne
      */
@@ -44,32 +44,36 @@ public class CategoryScreen implements Screen {
                 System.out.println("[3] Tools");
                 System.out.println("[4] Weapons");
                 System.out.println("[x] Exit");
-
                 System.out.println("\nEnter: ");
                 input = scanner.nextLine();
-                ProductScreen productScreen = new ProductScreen(reviewService, productService, router, session);
+                // ProductScreen productScreen = new ProductScreen(reviewService,
+                // productService, router, session);
 
                 switch (input.toLowerCase()) {
                     case "1":
                         logger.info("Navigating to products/redstone screen.");
-                        productScreen.RedstoneProducts(scanner);
+                        router.navigate("/product/redstone", scanner);
+                        // productScreen.RedstoneProducts(scanner);
                         break;
                     case "2":
                         logger.info("Navigating to products/postions screen.");
-                        productScreen.PotionProducts(scanner);
+                        router.navigate("/product/potion", scanner);
+                        // productScreen.PotionProducts(scanner);
                         break;
                     case "3":
                         logger.info("Navigating to products/tools screen.");
-                        productScreen.ToolProducts(scanner);
+                        router.navigate("/product/tool", scanner);
+                        // productScreen.ToolProducts(scanner);
                         break;
                     case "4":
-                        logger.info("Navigating to proucts/weapons screen.");
-                        productScreen.WeaponProducts(scanner);
+                        logger.info("Navigating to products/weapons screen.");
+                        router.navigate("/product/weapon", scanner);
+                        // productScreen.WeaponProducts(scanner);
                         break;
                     case "x":
                         logger.info("Exit menu screen.");
                         router.navigate("/menu", scanner);
-                        break exit;
+                        break;
                     default:
                         logger.warn("Invalid option");
                         clearScreen();

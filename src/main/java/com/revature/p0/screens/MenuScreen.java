@@ -11,15 +11,14 @@ import lombok.AllArgsConstructor;
 public class MenuScreen implements Screen {
     private final RouterService router;
     private Session session;
-    private static final Logger logger = LogManager.getLogger(HomeScreen.class);
+    private static final Logger logger = LogManager.getLogger(MenuScreen.class);
 
     /*
      * @param start() is an abstract method implemented from the Screen interface.
      * It has been given functionality to display MenuScreen options which allow
      * the user to view their Shopping Cart, Categories, or Options. Shopping Cart,
      * Category, and Orders are routed through RouterService their respective
-     * screen.
-     * Exit ends the program.
+     * screen. Exit ends the program.
      * 
      * @author Katie Osborne
      */
@@ -40,7 +39,6 @@ public class MenuScreen implements Screen {
 
                 System.out.println("\nEnter: ");
                 input = scanner.nextLine();
-
                 switch (input.toLowerCase()) {
                     case "1":
                         logger.info("Navigating to Shopping Cart screen.");
@@ -56,17 +54,20 @@ public class MenuScreen implements Screen {
                         break;
                     case "x":
                         logger.info("Exit home screen.");
-                        System.out.println("\nGoodbye!");
-                        break exit;
+                        // System.out.println("\nGoodbye!");
+                        router.navigate("/home", scanner);
+                        break;
                     default:
                         logger.warn("Invalid option");
                         clearScreen();
                         System.out.println("Invalid option selected.");
                         System.out.print("\nPress enter to continue...");
                         scanner.nextLine();
+                        // scanner.close();
                         break;
                 }
             }
+
         }
     }
 

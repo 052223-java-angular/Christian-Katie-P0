@@ -12,11 +12,9 @@ import com.revature.p0.models.User;
 import com.revature.p0.utils.ConnectionFactory;
 
 public class UserDAO implements CrudDAO<User> {
-
     /*
      * @param save() method is used to save the user's information after they
-     * register.
-     * The informations is stored in the local database.
+     * register. The informations is stored in the local database.
      * 
      * @author Katie Osborne
      */
@@ -44,46 +42,21 @@ public class UserDAO implements CrudDAO<User> {
     }
 
     /*
-     * @param findByID() method retrieves users from the local database by the
-     * userId.
-     * This is done when the user logs in to their account.
+     * @param findByUsername() method retrieves users from the local database by the
+     * username. This is done when the user logs in to their account.
+     * 
+     * @return the user by their username.
      * 
      * @author Katie Osborne
      */
-    @Override
-    public User findByID(String id) {
-        // create connection
-        try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
-            String sql = "SELECT * FROM users WHERE id = ?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, id);
-            // ResultSet object to retrieve user with matching id.
-            ResultSet rs = preparedStatement.executeQuery();
-            if (rs.next()) {
-                User login = new User(
-                        rs.getString("id"),
-                        rs.getString("username"),
-                        rs.getString("password"));
-                return login;
-            }
-        } catch (SQLException sql) {
-            throw new RuntimeException("Unable to access database to login user.");
-        } catch (IOException io) {
-            throw new RuntimeException("Cannot find application.properties to login user.");
-        } catch (ClassNotFoundException cnf) {
-            throw new RuntimeException("Unable to load jdbc to login user.");
-        }
-        return null;
-    }
-
     public Optional<User> findByUsername(String username) {
-
+        // create connection
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
             String sql = "SELECT * FROM users WHERE username = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, username);
-
+                // ResultSet object to retrieve user with matching username.
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
                         User user = new User();
@@ -105,6 +78,42 @@ public class UserDAO implements CrudDAO<User> {
         }
 
         return Optional.empty();
+    }
+
+    /*
+     * @param findByID() method retrieves users from the local database by the
+     * userId.
+     * 
+     * @return the user by their userId.
+     * 
+     * @author Katie Osborne
+     */
+    @Override
+    public User findByID(String id) {
+        // // create connection
+        // try (Connection connection = ConnectionFactory.getInstance().getConnection())
+        // {
+        // String sql = "SELECT * FROM users WHERE id = ?";
+        // PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        // preparedStatement.setString(1, id);
+        // // ResultSet object to retrieve user with matching id.
+        // ResultSet rs = preparedStatement.executeQuery();
+        // if (rs.next()) {
+        // User login = new User(
+        // rs.getString("id"),
+        // rs.getString("username"),
+        // rs.getString("password"));
+        // return login;
+        // }
+        // } catch (SQLException sql) {
+        // throw new RuntimeException("Unable to access database to login user.");
+        // } catch (IOException io) {
+        // throw new RuntimeException("Cannot find application.properties to login
+        // user.");
+        // } catch (ClassNotFoundException cnf) {
+        // throw new RuntimeException("Unable to load jdbc to login user.");
+        // }
+        return null;
     }
 
     @Override

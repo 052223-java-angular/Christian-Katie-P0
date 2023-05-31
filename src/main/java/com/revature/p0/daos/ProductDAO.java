@@ -12,19 +12,15 @@ import com.revature.p0.models.Product;
 import com.revature.p0.utils.ConnectionFactory;
 
 public class ProductDAO implements CrudDAO<Product> {
-
     /*
      * @param findAllByCategoryId() method is connecting to the local database
      * and retrieving all products by the category_id. This keeps the products
      * organized by category instead of retrieving all the products at once.
      * 
-     * @return the related exception message should anything happen at runtime.
-     * If the method runs correctly, it will return the product's id, name, price,
-     * and category_id given a specific category id.
+     * @return a list of products by category_id.
      * 
      * @author Katie Osborne
      */
-
     public List<Product> findAllByCategoryId(String id) {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionFactory.getInstance().getConnection()) {

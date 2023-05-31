@@ -19,7 +19,7 @@ public class OrderScreen implements Screen {
     private OrderService orderService;
     private final RouterService router;
     private final Session session;
-    private static final Logger logger = LogManager.getLogger(ProductScreen.class);
+    private static final Logger logger = LogManager.getLogger(OrderScreen.class);
 
     /*
      * @param start() is an abstract method implemented from the Screen interface.
@@ -28,10 +28,13 @@ public class OrderScreen implements Screen {
      * 
      * First, it checks to see if the user is logged in. If not they are routed back
      * to the login screen. Next the username is called from the session to get all
-     * the assiciated orders that belong to that username. Then those orders are
+     * the associated orders that belong to that username. Then those orders are
      * iterated through and displayed by their id, date, and total. The user can
      * then select an order to view more details and select 'x' at anytime to go
      * back.
+     * 
+     * @return a list of orders the users has made displaying the id, date, and
+     * total.
      * 
      * @author Katie Osborne
      */
@@ -40,7 +43,7 @@ public class OrderScreen implements Screen {
         logger.info("User navigated to the Orders screen.");
         clearScreen();
         System.out.println("Here are your orders:");
-        System.out.println("-ID-|-Date-|-Cost-");
+        System.out.println("-ID-|-Date-|-Total-");
 
         if (session.isLoggedIn()) {
             String username = session.getUsername();
@@ -97,9 +100,9 @@ public class OrderScreen implements Screen {
      * @param orderItems() is a method that allows the user to see the items they
      * purchased in a given order.
      * 
-     * A list of order items is retrieved from the selected
-     * order through the service and iterated through. Then the order items are
-     * displayed by product name, item quantity, item price, and product id.
+     * @return a list of order items from the selected order through the service
+     * and iterated through. Then the order items are displayed by product name,
+     * item quantity, item price, and product id.
      * 
      * @author Katie Osborne
      */

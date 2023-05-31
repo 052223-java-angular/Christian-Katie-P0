@@ -50,6 +50,7 @@ public class HomeScreen implements Screen {
                     case "x":
                         logger.info("Exit home screen.");
                         System.out.println("\nGoodbye!");
+                        System.exit(0);
                         break exit;
                     default:
                         logger.warn("Invalid option");
