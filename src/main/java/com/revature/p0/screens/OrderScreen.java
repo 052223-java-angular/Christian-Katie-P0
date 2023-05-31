@@ -47,7 +47,6 @@ public class OrderScreen implements Screen {
 
         if (session.isLoggedIn()) {
             String username = session.getUsername();
-            // String id = session.getId();
             List<Order> orders = orderService.findAllByUsername(username);
 
             for (int i = 0; i < orders.size(); i++) {
@@ -72,13 +71,8 @@ public class OrderScreen implements Screen {
                         if (choiceInt > 0 && choiceInt <= orders.size()) {
                             // User has selected a valid order
                             Order selectedOrder = orders.get(choiceInt - 1);
-                            // OrderItems selectOrderItems = orderItems.get(choiceInt - 1);
-
                             // Call orderItems() method for the selected order
                             orderItems(scanner, selectedOrder);
-                            // String print = "2A2B";
-                            // System.out.println(orderService.findAllByOrderItemsId(print));
-
                         } else {
                             logger.info("Invalid option!");
                             System.out.println("Invalid selection, please try again.");
@@ -111,13 +105,13 @@ public class OrderScreen implements Screen {
         clearScreen();
         System.out.println("Selected Order:");
         System.out.println("Order ID: " + selectedOrder.getId());
-        // Retrieve the list of order items for the selected order
+        // Create list of order items for the selected order
         List<OrderItems> orderItem = orderService.findAllByOrderItemId(selectedOrder.getId());
 
         System.out.println("---------------------------");
         System.out.println("No. | Product Name | Quantity | Price | Product ID");
         System.out.println("---------------------------");
-
+        // Iterate through items and add to list
         for (int i = 0; i < orderItem.size(); i++) {
             OrderItems item = orderItem.get(i);
             String productName = orderService.findProductNameById(item.getProductId());
